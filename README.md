@@ -1,20 +1,20 @@
 todo:
 
 legend: 
-{
+
     I will use this syntax to represent tasks "- [ ]"
     when a task is done I will show it this way "- [x]"
-    this means a branch a person responsible for the branch "<name>"
-}
+    this means a branch a person responsible for the branch "==name=="
+
 
 - [ ] System Selection
-    <business>
+    ==business==
     - [ ] make a document with systems that are used by business,
         leave links to their sites, no need for any details, just 
         give as options, we can change our "theme" later(give as 2-3 options)
 
 - [ ] Requirement Gathering
-    <business>
+    ==business==
     - [ ] make a short report on data "requirements", to make it you should do the following
         1. Document Use Cases:
             document the various use cases and scenarios in which the system will be used,
@@ -50,19 +50,19 @@ legend:
         {I will add aditional stuff to your report, so this is what I want from you}
 
 - [ ] Conceptual Design-Based 
-    <dbms>
+    ==dbms==
 - [ ] Logical Design
-    <dbms>
+    ==dbms==
 - [ ] Physical Design 
-    <dbms>
+    ==dbms==
 - [ ] Data management
-    <dbms>
+    ==dbms==
 - [ ] Queries
-    <dbms>
+    ==dbms==
 { I will not wright instactions for myself lol 😌}
 
 - [ ] make a QUI in java
-    <programming>
+    ==programming==
     it will consust of the following parts 
     adding, editing, deleting, and searching.
     I suguest you to approach a project this way
