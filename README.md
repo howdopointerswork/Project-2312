@@ -1,1 +1,3 @@
-thia ia going to be our todo:
+to run the program
+Linux
+> ./GUI
