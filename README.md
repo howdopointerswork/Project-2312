@@ -1,3 +1,5 @@
-to run the program
-Linux
-> ./GUI
+to run the program Linux
+
+    ./GUI
+
+
