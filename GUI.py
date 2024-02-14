@@ -48,13 +48,12 @@ root.resizable(0,0)
 
 #Main page
 main = Frame(root, height = 600, width = 600)
+#Other pages
 p1 = Frame(root, height = 600, width = 600)
 p2 = Frame(root, height = 600, width = 600)
 p3 = Frame(root, height = 600, width = 600)
 p4 = Frame(root, height = 600, width = 600)
-#Frames for other pages
 
-frames = [p1, p2, p3, p4]
 
 
 
