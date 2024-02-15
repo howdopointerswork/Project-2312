@@ -1,4 +1,4 @@
-('/Users/Honrow/Project-2312/build/gui/PYZ-00.pyz',
+('/Users/Honrow/Project-2312/build/GUI/PYZ-00.pyz',
  [('_compat_pickle',
    '/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/_compat_pickle.py',
    'PYMODULE'),
