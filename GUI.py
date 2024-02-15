@@ -58,14 +58,23 @@ p4 = Frame(root, height = 600, width = 600)
 
 
 #Variables 
-toChange = StringVar()  
-p1Var = StringVar()
+
+#Labels/Text for Page 1
+p1_Select_Lbl_Var = StringVar()
+p1_From_Lbl_Var = StringVar()
+
+
 p2Var = StringVar()
 p3Var = StringVar()
 p4Var = StringVar()
-curr = main
 
 
+#Used for Selection/Search page (Page 1) 
+#To be used for first argument in SELECT query (column name)
+p1_Select_Ipt_Var = StringVar()
+#To be used for second argument in SELECT query (table name)
+p1_From_Ipt_Var = StringVar()
+#To add WHERE field and functionality
 
 
 #Widgets 
@@ -86,20 +95,45 @@ backBtn = ttk.Button(root, text="Back", command=showMain).place(x = 50, y=500)
 
 
 
-p1Lbl = ttk.Label(p1, textvariable=p1Var).place(x=250,y=300)
-p1Var.set("Page 1")
 
+#Page 1 layout
+p1_lbl1 = ttk.Label(p1, textvariable=p1_Select_Lbl_Var).place(x=150,y=200)
+p1_Select_Lbl_Var.set("Select Column:")
+
+#Going to only allow characters here
+p1_ipt1 = ttk.Entry(p1, width=20, textvariable=p1_Select_Ipt_Var).place(x=300, y=200)
+
+
+
+p1_lbl2 = ttk.Label(p1, textvariable=p1_From_Lbl_Var).place(x=150, y=300)
+p1_From_Lbl_Var.set("From Table:")
+
+#Only characters here as well
+p1_ipt2 = ttk.Entry(p1, width=20, textvariable=p1_From_Ipt_Var).place(x=300, y=300)
+
+
+
+#Where condition text and field to be added here
+
+
+
+
+
+#Page 2 layout
 p2Lbl = ttk.Label(p2, textvariable=p2Var).place(x=250,y=300)
 p2Var.set("Page 2")
 
+
+#Page 3 layout
 p3Lbl = ttk.Label(p3, textvariable=p3Var).place(x=250,y=300)
 p3Var.set("Page 3")
 
+#Page 4 layout
 p4Lbl = ttk.Label(p4, textvariable=p4Var).place(x=250,y=300)
 p4Var.set("Page 4")
 
 main.pack()
-curr = main
+
 
 
 
@@ -108,3 +142,4 @@ curr = main
 
 #Draw to Screen
 root.mainloop()
+
