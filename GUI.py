@@ -211,6 +211,7 @@ p3_ipt2 = ttk.Entry(p3, width=20, textvariable=p3_Add_Ipt_Var).place(x=300, y=20
 p3_lbl3 = ttk.Label(p3, textvariable=p3_Type_Lbl_Var).place(x=150, y=300)
 p3_drop = OptionMenu(p3, p3_drop, "Number", "Char", "Int", "Decimal", "Longtext", "Date", "Varchar", "Autonumber", "Shorttext").place(x=300, y=300)
 #Will add int specifications for types like char and int
+p3_btn1 = ttk.Button(p3, text="Add Column").place(x=275, y=400)
 
 
 #Page 4 layout
