@@ -59,9 +59,16 @@ p4 = Frame(root, height = 600, width = 600)
 
 #Variables 
 
+#Label variables
+############################################
 #Labels/Text for Page 1
 p1_Select_Lbl_Var = StringVar()
 p1_From_Lbl_Var = StringVar()
+p1_Where_Lbl_Var = StringVar()
+
+p2_Select_Lbl_Var = StringVar()
+p2_Set_Lbl_Var = StringVar()
+
 
 
 p2Var = StringVar()
@@ -69,12 +76,30 @@ p3Var = StringVar()
 p4Var = StringVar()
 
 
+
+#Input variables
+#############################################
+
 #Used for Selection/Search page (Page 1) 
 #To be used for first argument in SELECT query (column name)
 p1_Select_Ipt_Var = StringVar()
 #To be used for second argument in SELECT query (table name)
 p1_From_Ipt_Var = StringVar()
 #To add WHERE field and functionality
+p1_Where_Ipt_Var1 = StringVar()
+p1_Where_Ipt_Var2 = IntVar()
+
+
+p2_Update_Ipt_Var = StringVar()
+p2_Set_Ipt_Var = StringVar()
+
+
+#Misc variables
+#############################################
+
+p1_drop = StringVar()
+
+
 
 
 #Widgets 
@@ -82,46 +107,75 @@ p1_From_Ipt_Var = StringVar()
 	#For root
 
 
-p1Btn = ttk.Button(main, text="Page 1", command= lambda: changePage(p1)).place(x = 250, y = 200)
+p1Btn = ttk.Button(main, text="Search", command= lambda: changePage(p1)).place(x = 250, y = 100)
 
-p2Btn = ttk.Button(main, text="Page 2", command= lambda: changePage(p2)).place(x = 250, y = 300)
+p2Btn = ttk.Button(main, text="Edit", command= lambda: changePage(p2)).place(x = 250, y = 200)
 
-p3Btn = ttk.Button(main, text="Page 3", command= lambda: changePage(p3)).place(x = 250, y = 400)
+p3Btn = ttk.Button(main, text="Add", command= lambda: changePage(p3)).place(x = 250, y = 300)
 
-p4Btn = ttk.Button(main, text="Page 4", command= lambda: changePage(p4)).place(x = 250, y = 500)
+p4Btn = ttk.Button(main, text="Delete", command= lambda: changePage(p4)).place(x = 250, y = 400)
 
 #Back button
+#May change to be part of each page, so that it is present only upon clicking an initial button
+#Rather than being obsolete on the main page
 backBtn = ttk.Button(root, text="Back", command=showMain).place(x = 50, y=500)
 
 
 
 
 #Page 1 layout
-p1_lbl1 = ttk.Label(p1, textvariable=p1_Select_Lbl_Var).place(x=150,y=200)
+#The two labels and entries below will likely be shifted up in the future to make space for where conditions
+p1_lbl1 = ttk.Label(p1, textvariable=p1_Select_Lbl_Var).place(x=150,y=100)
 p1_Select_Lbl_Var.set("Select Column:")
 
 #Going to only allow characters here
-p1_ipt1 = ttk.Entry(p1, width=20, textvariable=p1_Select_Ipt_Var).place(x=300, y=200)
+#Entry box for the SELECT clause
+p1_ipt1 = ttk.Entry(p1, width=20, textvariable=p1_Select_Ipt_Var).place(x=300, y=100)
 
 
-
-p1_lbl2 = ttk.Label(p1, textvariable=p1_From_Lbl_Var).place(x=150, y=300)
+#Label for the entry box for FROM clause
+p1_lbl2 = ttk.Label(p1, textvariable=p1_From_Lbl_Var).place(x=150, y=200)
 p1_From_Lbl_Var.set("From Table:")
-
 #Only characters here as well
-p1_ipt2 = ttk.Entry(p1, width=20, textvariable=p1_From_Ipt_Var).place(x=300, y=300)
+#Entry box for the FROM clause
+
+p1_ipt2 = ttk.Entry(p1, width=20, textvariable=p1_From_Ipt_Var).place(x=300, y=200)
+
+#Label for conditions for searching
+p1_lbl3 = ttk.Label(p1, textvariable=p1_Where_Lbl_Var).place(x=150, y=300)
+p1_Where_Lbl_Var.set("Condition:")
+
+#Entry box for the WHERE clause
+p1_ipt3 = ttk.Entry(p1, width=20, textvariable=p1_Where_Ipt_Var1).place(x=300, y=300)
+#May add BETWEEN and such
+p1_dropdown = OptionMenu(p1, p1_drop, "=", ">", "<", ">=", "<=").place(x=375, y=350)
+p1_ipt4 = ttk.Entry(p1, width=20, textvariable=p1_Where_Ipt_Var2).place(x=300, y=400)
 
 
+#Button for conducting the actual search (SELECT query) with the given inputs
+p1_btn1 = ttk.Button(p1, text="Search").place(x=225, y=500)
 
-#Where condition text and field to be added here
+
 
 
 
 
 
 #Page 2 layout
-p2Lbl = ttk.Label(p2, textvariable=p2Var).place(x=250,y=300)
-p2Var.set("Page 2")
+p2_lbl1 = ttk.Label(p2, textvariable=p2_Select_Lbl_Var).place(x=150,y=100)
+p2_Select_Lbl_Var.set("Table to Update:")
+
+p2_ipt1 = ttk.Entry(p2, width=20, textvariable=p2_Update_Ipt_Var).place(x=300, y=100)
+
+#To put a 'Separate by Comma' label below this
+p2_lbl2 = ttk.Label(p2, textvariable=p2_Set_Lbl_Var).place(x=150, y=200)
+p2_Set_Lbl_Var.set("Column(s) to change:")
+
+p2_ipt2 = ttk.Entry(p2, width=20, textvariable=p2_Set_Ipt_Var).place(x=300, y=200)
+
+#Also will add a space for where conditions
+
+
 
 
 #Page 3 layout
