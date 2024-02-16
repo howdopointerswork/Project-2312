@@ -68,6 +68,7 @@ p1_Where_Lbl_Var = StringVar()
 
 p2_Select_Lbl_Var = StringVar()
 p2_Set_Lbl_Var = StringVar()
+p2_Where_Lbl_Var = StringVar()
 
 
 
@@ -92,12 +93,14 @@ p1_Where_Ipt_Var2 = IntVar()
 
 p2_Update_Ipt_Var = StringVar()
 p2_Set_Ipt_Var = StringVar()
-
+p2_Where_Ipt_Var1 = StringVar()
+p2_Where_Ipt_Var2 = IntVar()
 
 #Misc variables
 #############################################
 
 p1_drop = StringVar()
+p2_drop = StringVar()
 
 
 
@@ -148,7 +151,7 @@ p1_Where_Lbl_Var.set("Condition:")
 #Entry box for the WHERE clause
 p1_ipt3 = ttk.Entry(p1, width=20, textvariable=p1_Where_Ipt_Var1).place(x=300, y=300)
 #May add BETWEEN and such
-p1_dropdown = OptionMenu(p1, p1_drop, "=", ">", "<", ">=", "<=").place(x=375, y=350)
+p1_drop = OptionMenu(p1, p1_drop, "=", ">", "<", ">=", "<=").place(x=375, y=350)
 p1_ipt4 = ttk.Entry(p1, width=20, textvariable=p1_Where_Ipt_Var2).place(x=300, y=400)
 
 
@@ -173,7 +176,16 @@ p2_Set_Lbl_Var.set("Column(s) to change:")
 
 p2_ipt2 = ttk.Entry(p2, width=20, textvariable=p2_Set_Ipt_Var).place(x=300, y=200)
 
-#Also will add a space for where conditions
+p2_lbl3 = ttk.Label(p2, width=20, textvariable=p2_Where_Ipt_Var1).place(x=300, y=300)
+p2_Where_Lbl_Var.set("Condition:")
+
+
+p2_ipt3 = ttk.Entry(p2, width=20, textvariable=p2_Where_Ipt_Var1).place(x=300, y=300) 
+p2_dropdown = OptionMenu(p2, p2_drop, "=", ">", "<", ">=", "<=").place(x=375, y=350)
+
+p2_ipt4 = ttk.Entry(p2, width=20, textvariable=p2_Where_Ipt_Var2).place(x=300, y=400)
+
+p2_btn1 = ttk.Button(p2, text="Update").place(x=225, y=500)
 
 
 
