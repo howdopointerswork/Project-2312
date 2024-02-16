@@ -71,9 +71,11 @@ p2_Set_Lbl_Var = StringVar()
 p2_Where_Lbl_Var = StringVar()
 
 
+p3_Alter_Lbl_Var = StringVar()
+p3_Add_Lbl_Var = StringVar()
+p3_Type_Lbl_Var = StringVar()
 
-p2Var = StringVar()
-p3Var = StringVar()
+
 p4Var = StringVar()
 
 
@@ -96,11 +98,15 @@ p2_Set_Ipt_Var = StringVar()
 p2_Where_Ipt_Var1 = StringVar()
 p2_Where_Ipt_Var2 = IntVar()
 
+p3_Alter_Ipt_Var = StringVar()
+p3_Add_Ipt_Var = StringVar()
+
 #Misc variables
 #############################################
 
 p1_drop = StringVar()
 p2_drop = StringVar()
+p3_drop = StringVar()
 
 
 
@@ -191,8 +197,21 @@ p2_btn1 = ttk.Button(p2, text="Update").place(x=225, y=500)
 
 
 #Page 3 layout
-p3Lbl = ttk.Label(p3, textvariable=p3Var).place(x=250,y=300)
-p3Var.set("Page 3")
+p3_Lbl1 = ttk.Label(p3, textvariable=p3_Alter_Lbl_Var).place(x=150,y=100)
+p3_Alter_Lbl_Var.set("Table To Add To:")
+
+p3_ipt1 = ttk.Entry(p3, width=20, textvariable=p3_Alter_Ipt_Var).place(x=300, y=100)
+
+
+p3_lbl2 = ttk.Label(p3, textvariable=p3_Add_Lbl_Var).place(x=150, y=200)
+p3_Add_Lbl_Var.set("Column to add:")
+
+p3_ipt2 = ttk.Entry(p3, width=20, textvariable=p3_Add_Ipt_Var).place(x=300, y=200)
+
+p3_lbl3 = ttk.Label(p3, textvariable=p3_Type_Lbl_Var).place(x=150, y=300)
+p3_drop = OptionMenu(p3, p3_drop, "Number", "Char", "Int", "Decimal", "Longtext", "Date", "Varchar", "Autonumber", "Shorttext").place(x=300, y=300)
+#Will add int specifications for types like char and int
+
 
 #Page 4 layout
 p4Lbl = ttk.Label(p4, textvariable=p4Var).place(x=250,y=300)
