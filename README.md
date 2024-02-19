@@ -16,7 +16,7 @@ legend:
 {pls ask me(Alex) if you need help with all this}
 - [ ] Requirement Gathering
 
-    - [ ] make a use-case diagram for a system
+    - [x] make a use-case diagram for a system
         a nice tutorial if you are lost https://www.youtube.com/watch?v=4emxjxonNRI
 
     - [ ] make a short report on data "requirements", to make it you should do the following
