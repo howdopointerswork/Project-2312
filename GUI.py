@@ -76,7 +76,8 @@ p3_Add_Lbl_Var = StringVar()
 p3_Type_Lbl_Var = StringVar()
 
 
-p4Var = StringVar()
+p4_Delete_Lbl_Var = StringVar()
+p4_Delete_Lbl_Var2 = StringVar()
 
 
 
@@ -101,12 +102,19 @@ p2_Where_Ipt_Var2 = IntVar()
 p3_Alter_Ipt_Var = StringVar()
 p3_Add_Ipt_Var = StringVar()
 
+p4_Delete_Ipt_Var = StringVar()
+p4_Where_Ipt_Var = StringVar()
+p4_Where_Ipt_Var2 = IntVar() # Can also be String, applies to all Condition Entries
+
+
+
 #Misc variables
 #############################################
 
 p1_drop = StringVar()
 p2_drop = StringVar()
 p3_drop = StringVar()
+p4_drop = StringVar()
 
 
 
@@ -215,8 +223,26 @@ p3_btn1 = ttk.Button(p3, text="Add Column").place(x=275, y=400)
 
 
 #Page 4 layout
-p4Lbl = ttk.Label(p4, textvariable=p4Var).place(x=250,y=300)
-p4Var.set("Page 4")
+p4_Lbl1 = ttk.Label(p4, textvariable=p4_Delete_Lbl_Var).place(x=150,y=100)
+p4_Delete_Lbl_Var.set("Table to Delete From:")
+
+p4_ipt1 = ttk.Entry(p4, width=20, textvariable=p4_Delete_Ipt_Var).place(x=300,y=100)
+
+p4_Lbl2 = ttk.Label(p4, textvariable=p4_Delete_Lbl_Var2).place(x=150,y=200)
+p4_Delete_Lbl_Var2.set("Condition:")
+
+p4_ipt2 = ttk.Entry(p4, width=20, textvariable=p4_Where_Ipt_Var).place(x=300, y=200)
+
+
+p4_dropdown = OptionMenu(p4, p4_drop, "=", ">", "<", ">=", "<=").place(x=375, y=250)
+
+p4_ipt3 = ttk.Entry(p4, width=20, textvariable=p4_Where_Ipt_Var2).place(x=300, y=300)
+
+p4_btn1 = ttk.Button(p4, text="Delete").place(x=225, y=400)
+
+
+
+
 
 main.pack()
 
