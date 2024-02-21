@@ -35,7 +35,7 @@ legend:
    
 ==dbms== & ==business==
 
-   - [ ] Conceptual Design (Entity-Relationship Diagram)
+   - [x] Conceptual Design (Entity-Relationship Diagram)
 
 ==business==
 
