@@ -1,1 +1,3 @@
-thia ia going to be our todo:
+run:
+python3 main.py 
+to see if it works
