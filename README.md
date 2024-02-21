@@ -20,10 +20,10 @@ legend:
 
 - [ ] make a short report on data "requirements", to make it you should do the following
 
-    - [ ] Document Use Cases:
+    - [x] Document Use Cases:
     document the various use cases and scenarios in which the system will be used,
 
-    - [ ] Gather Requirements: {I would help you with that}
+    - [x] Gather Requirements: {I would help you with that}
     copy them for existing documentation for the system
     if there is no ware to take it from
     just make a list of what "system does" and "system provides"
@@ -33,7 +33,11 @@ legend:
         'system will provide ability to add new books'
         ...
    
-   - [ ] Entity-Relationship Diagram
+==dbms== & ==business==
+
+   - [ ] Conceptual Design (Entity-Relationship Diagram)
+
+==business==
 
    - [ ] Identify Entities and Attributes
     look though the requirements you wrote down 
@@ -56,7 +60,6 @@ legend:
    {I will add aditional stuff to your report, so this is what I want from you}
 
 ==dbms==
-- [ ] Conceptual Design-Based 
 - [ ] Logical Design
 - [ ] Physical Design 
 - [ ] Data management
@@ -64,7 +67,7 @@ legend:
 { I will not wright instactions for myself lol 😌}
 
 ==programming==
-- [ ] deside on how it is going to work
+- [x] deside on how it is going to work
     meaning, when user will open your app what he will see and 
     what each button will do, you can make a sketch if you want
 
