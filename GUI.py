@@ -2,6 +2,20 @@ from tkinter import *
 from tkinter import ttk
 
 
+#For future:
+
+#Create Page class
+#Make Main parent
+#Make Pages children
+
+
+#Each has their own layout
+#And can use reset and change pages through member function
+
+
+
+#Hide back button on main page
+
 
 
 #Functions here
@@ -13,6 +27,7 @@ def hideMain():
 
 
 def showMain():
+
 
 	p1.pack_forget()
 	p2.pack_forget()
@@ -26,7 +41,31 @@ def changePage(self):
 
 
 	hideMain()
+	resetP3()
 	self.pack()
+
+
+def resetP3():
+
+	p3_Alter_Ipt_Var.set(p3_Alter_Ipt_Arr[0])
+	p3_Add_Ipt_Var.set(p3_Add_Ipt_Arr[0])
+	p3_drop.set(p3_drop_Arr[0])
+	
+	
+
+def addCol():
+
+
+
+	p3_addCol_Var.set("Successfully Added Column!")
+
+
+
+
+	#resetP3()
+
+	
+	
 
 
 
@@ -40,6 +79,7 @@ root = Tk()
 root.title("Database GUI")
 root.geometry("600x600")
 root.resizable(0,0)
+
 
 
 
@@ -100,7 +140,10 @@ p2_Where_Ipt_Var1 = StringVar()
 p2_Where_Ipt_Var2 = IntVar()
 
 p3_Alter_Ipt_Var = StringVar()
+p3_Alter_Ipt_Arr = ["Select Table", "Table1", "Table2", "Table3"]
+
 p3_Add_Ipt_Var = StringVar()
+p3_Add_Ipt_Arr = ["Select Column", "Column1", "Column2", "Column3", "Column4"]
 
 p4_Delete_Ipt_Var = StringVar()
 p4_Where_Ipt_Var = StringVar()
@@ -112,9 +155,28 @@ p4_Where_Ipt_Var2 = IntVar() # Can also be String, applies to all Condition Entr
 #############################################
 
 p1_drop = StringVar()
+
+
 p2_drop = StringVar()
+
 p3_drop = StringVar()
+p3_tbl_drop = StringVar()
+p3_drop_Arr = ["Select Type", "Char", "Int", "Decimal", "Longtext", "Date", "Varchar", "Autonumber", "Shorttext", "Number"]
+
+
 p4_drop = StringVar()
+
+p3_addCol_Var = StringVar()
+
+
+
+
+#For messages to the user
+
+
+
+
+
 
 
 
@@ -186,7 +248,7 @@ p2_ipt1 = ttk.Entry(p2, width=20, textvariable=p2_Update_Ipt_Var).place(x=300, y
 
 #To put a 'Separate by Comma' label below this
 p2_lbl2 = ttk.Label(p2, textvariable=p2_Set_Lbl_Var).place(x=150, y=200)
-p2_Set_Lbl_Var.set("Column(s) to change:")
+p2_Set_Lbl_Var.set("Column(s) to Change:")
 
 p2_ipt2 = ttk.Entry(p2, width=20, textvariable=p2_Set_Ipt_Var).place(x=300, y=200)
 
@@ -205,21 +267,29 @@ p2_btn1 = ttk.Button(p2, text="Update").place(x=225, y=500)
 
 
 #Page 3 layout
-p3_Lbl1 = ttk.Label(p3, textvariable=p3_Alter_Lbl_Var).place(x=150,y=100)
-p3_Alter_Lbl_Var.set("Table To Add To:")
+#p3_Lbl1 = ttk.Label(p3, textvariable=p3_Alter_Lbl_Var).place(x=150,y=100)
+#p3_Alter_Lbl_Var.set("Select Table:")
 
-p3_ipt1 = ttk.Entry(p3, width=20, textvariable=p3_Alter_Ipt_Var).place(x=300, y=100)
+p3_ipt1 = ttk.OptionMenu(p3, p3_Alter_Ipt_Var, *p3_Alter_Ipt_Arr).place(x=250, y=100)
+#p3_drop.set("Select Table")
 
 
-p3_lbl2 = ttk.Label(p3, textvariable=p3_Add_Lbl_Var).place(x=150, y=200)
-p3_Add_Lbl_Var.set("Column to add:")
 
-p3_ipt2 = ttk.Entry(p3, width=20, textvariable=p3_Add_Ipt_Var).place(x=300, y=200)
+#p3_lbl2 = ttk.Label(p3, textvariable=p3_Add_Lbl_Var).place(x=150, y=200)
+#p3_Add_Lbl_Var.set("Column to add:")
 
-p3_lbl3 = ttk.Label(p3, textvariable=p3_Type_Lbl_Var).place(x=150, y=300)
-p3_drop = OptionMenu(p3, p3_drop, "Number", "Char", "Int", "Decimal", "Longtext", "Date", "Varchar", "Autonumber", "Shorttext").place(x=300, y=300)
+p3_ipt2 = ttk.OptionMenu(p3, p3_Add_Ipt_Var, *p3_Add_Ipt_Arr).place(x=250, y=200)
+
+#p3_lbl3 = ttk.Label(p3, textvariable=p3_Type_Lbl_Var).place(x=150, y=300)
+#p3_Type_Lbl_Var.set("Data Type:")
+p3_dropdown = OptionMenu(p3, p3_drop, *p3_drop_Arr).place(x=250, y=300)
 #Will add int specifications for types like char and int
-p3_btn1 = ttk.Button(p3, text="Add Column").place(x=275, y=400)
+p3_btn1 = ttk.Button(p3, text="Add Column", command=addCol).place(x=250, y=400)
+p3_addCol = ttk.Label(p3, textvariable = p3_addCol_Var).place(x=225, y=500)
+
+
+
+
 
 
 #Page 4 layout
@@ -238,7 +308,7 @@ p4_dropdown = OptionMenu(p4, p4_drop, "=", ">", "<", ">=", "<=").place(x=375, y=
 
 p4_ipt3 = ttk.Entry(p4, width=20, textvariable=p4_Where_Ipt_Var2).place(x=300, y=300)
 
-p4_btn1 = ttk.Button(p4, text="Delete").place(x=225, y=400)
+p4_btn1 = ttk.Button(p4, text="Delete").place(x=225, y=300)
 
 
 
