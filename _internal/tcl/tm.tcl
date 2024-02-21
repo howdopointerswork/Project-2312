@@ -45,7 +45,7 @@
 namespace eval ::tcl::tm {
     # Default paths. None yet.
 
-    variable paths {}
+    variable paths {/usr/share/tcltk/tcl8.6/tcl8}
 
     # The regex pattern a file name has to match to make it a Tcl Module.
 
@@ -378,3 +378,4 @@ proc ::tcl::tm::roots {paths} {
 # the chain.
 
 if {![interp issafe]} {::tcl::tm::Defaults}
+if {![interp issafe]} { ::tcl::tm::roots {/usr/lib/tcltk /usr/share/tcltk} }
