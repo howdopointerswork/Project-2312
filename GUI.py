@@ -31,7 +31,8 @@ def showMain():
 
 	p1.pack_forget()
 	p2.pack_forget()
-	p3.pack_forget()
+	p3_addCol_Var.set("")
+	p3.pack_forget()	
 	p4.pack_forget()
 	main.pack()
 
