@@ -74,9 +74,8 @@ def p1SelectTable(self):
 #Will take table as input and display it at top of page
 #Upon clicking any table, it will change to the columns page
 	p1.forget()
-
-	p1a_table.set(self)
 	p1a.pack()
+	p1a_table.set(self)
 
 
 def showP1():
