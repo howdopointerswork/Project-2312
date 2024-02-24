@@ -18,7 +18,7 @@ legend:
 - [x] make a use-case diagram for a system
    a nice tutorial if you are lost https://www.youtube.com/watch?v=4emxjxonNRI
 
-- [ ] make a short report on data "requirements", to make it you should do the following
+- [x] make a short report on data "requirements", to make it you should do the following
 
     - [x] Document Use Cases:
     document the various use cases and scenarios in which the system will be used,
@@ -39,7 +39,7 @@ legend:
 
 ==business==
 
-   - [ ] Identify Entities and Attributes
+   - [x] Identify Entities and Attributes
     look though the requirements you wrote down 
     to Identify the `Entities` (objects or consepts) 
     and than see what this Entities `Attributes` (properties) they have
@@ -50,7 +50,7 @@ legend:
         "Customers" will have "name", "birth" ...
         "Orders" will  have "dates" ...
 
-   - [ ] Define Relationships
+   - [x] Define Relationships
     determine relationships between different `Entities`
     meaning you need to describe how entities connect or interact with each other
 
