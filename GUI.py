@@ -1,7 +1,12 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+import sqlite3
 
+
+
+con = sqlite3.connect("chinook.db")
+cur = con.cursor()
 
 #For future:
 
@@ -77,11 +82,71 @@ def p1SelectTable(self):
 	p1a.pack()
 	p1a_table.set(self)
 
+	#loadMenu = cur.execute("SELECT * FROM " + p1a_table.get() + " WHERE 1=0")
+
+	#p1a_list = [i[0] for i in loadMenu.fetchall()]
+
+	#for row in loadMenu.fetchall():
+	#	p1a_list.append(str(row))
+	p1a_list = ['Select Table']
+
+	if(p1a_table.get().lower() == 'customers'):
+		p1a_list = p1a_cols_t1
+	
+	if(p1a_table.get().lower() == 'employees'):
+		p1a_list = p1a_cols_t2
+
+	if(p1a_table.get().lower() == 'albums'):
+		p1a_list = p1a_cols_t3
+
+	if(p1a_table.get().lower() == 'tracks'):
+		p1a_list = p1a_cols_t4		
+
+
+		
+	#optionsList = tk.StringVar()
+	#optionsList.set(p1a_list[0])
+
+	p1a_col = ttk.OptionMenu(p1a, p1a_drop, *p1a_list).place(x=100, y=300)
+
 
 def showP1():
 
 	p1a.forget()
 	p1.pack()
+
+def showP1a():
+
+	p1b.forget()
+	p1a.pack()	
+
+
+def search():
+
+	p1a.forget()
+	p1b.pack()
+	x = 0
+	y = 25
+	data = cur.execute("SELECT " +p1a_drop.get()+ " FROM " + p1a_table.get()) 
+	getData = data.fetchall()
+	for row in getData:
+		tk.Label(p1b, text=str(row)).place(x=x,y=y)
+		x += 100
+		
+		if(x+75 >= 1000):
+			x = 25
+			y += 50
+
+	#con.commit()
+	#p1a_lbl2_var.set(data) 
+	#for row in data:
+	#	print(row)
+	#p1a.forget()
+	#p1b_lbl_var.set(data.fetchall())
+
+
+
+
 
 
 
@@ -90,8 +155,8 @@ def showP1():
 root = tk.Tk()
 
 root.title("Database GUI")
-root.geometry("600x600")
-root.resizable(0,0)
+root.geometry("1000x1000")
+#root.resizable(0,0)
 
 
 
@@ -117,6 +182,8 @@ p1 = Frame(root, height = 600, width = 600)
 #Sub page for p1 (Columns)
 p1a = Frame(root, height=600, width = 600)
 
+p1b = Frame(root, height = 1000, width = 1000)
+
 #Background colour
 
 
@@ -136,22 +203,34 @@ p1_tbl2_var = StringVar()
 p1_tbl3_var = StringVar()
 p1_tbl4_var = StringVar()
 
-p1_tbl1 = tk.Button(p1, textvariable=p1_tbl1_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Table 1")).place(x=50, y=200)
-p1_tbl1_var.set("Table 1")
+p1_tbl1 = tk.Button(p1, textvariable=p1_tbl1_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Customers")).place(x=50, y=200)
+p1_tbl1_var.set("Customers")
 
-p1_tbl2 = tk.Button(p1, textvariable=p1_tbl2_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Table 2")).place(x=350, y=200)
-p1_tbl2_var.set("Table 2")
+p1_tbl2 = tk.Button(p1, textvariable=p1_tbl2_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Employees")).place(x=350, y=200)
+p1_tbl2_var.set("Employees")
 
-p1_tbl3 = tk.Button(p1, textvariable=p1_tbl3_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Table 3")).place(x=50, y=300)
-p1_tbl3_var.set("Table 3")
+p1_tbl3 = tk.Button(p1, textvariable=p1_tbl3_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Albums")).place(x=50, y=300)
+p1_tbl3_var.set("Albums")
 
-p1_tbl4 = tk.Button(p1, textvariable=p1_tbl4_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Table 4")).place(x=350, y=300) 
-p1_tbl4_var.set("Table 4")
+p1_tbl4 = tk.Button(p1, textvariable=p1_tbl4_var, font=("Arial", 15),height=3, width=20, command= lambda: p1SelectTable("Tracks")).place(x=350, y=300) 
+p1_tbl4_var.set("Tracks")
+
+
+
+
+
 
 ##################################################
 #Page 1 Sub Page
 
 p1a_table = StringVar()
+
+p1a_drop = StringVar()
+
+p1a_cols_t1 = ['CustomerId', 'FirstName', 'LastName', 'Company', 'Address', 'City', 'State', 'Country', 'PostalCode', 'Phone', 'Fax', 'Email', 'SupportRepId']
+p1a_cols_t2 = ['EmployeeId', 'LastName', 'FirstName', 'Title', 'ReportsTo', 'BirthDate', 'HireDate', 'Address']
+p1a_cols_t3 = ['AlbumId', 'Title', 'ArtistId']
+p1a_cols_t4 = ['TrackId', 'Name', 'AlbumId', 'MediaTypeId', 'GenreId', 'Composer', 'Milliseconds', 'Bytes', 'UnitPrice']
 
 p1a_lbl1 = tk.Label(p1a, textvariable=p1a_table, font=("Arial",25)).place(x=250, y=100)
 
@@ -160,9 +239,28 @@ backBtn2 = tk.Button(p1a, text="Back", command=showP1).place(x =25, y=550)
 
 
 
+
+#p1a_col = ttk.OptionMenu(p1a, p1a_drop, *p1a_list).place(x=100, y=300)
+
+
+
+p1a_confirm = tk.Button(p1a, text="Confirm", command=search).place(x=100, y=550)
+
 #For column, we will put every name of column in an array
 #And alter the option menu to use the respective array depending on the selected table
 #For example, selecting table 1 will change the OptionMenu array to Table 1's columns
+
+##################################################
+#Page 1 Sub Page 2 
+
+#p1b_lbl_var = StringVar()
+#p1b_lbl = tk.Label(p1b, width=300, textvariable=p1b_lbl_var).place(x=100, y=200)
+#p1b_lbl_var.set("Results")
+
+backBtn3 = tk.Button(p1b, text="Back", command=showP1a).place(x =25, y=650) 
+
+
+
 
 ##################################################
 
