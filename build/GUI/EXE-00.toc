@@ -42,7 +42,7 @@
  [],
  False,
  False,
- 1708577997,
+ 1708911675,
  [('run',
    '/home/vulga/Desktop/code/Project-2312/env/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run',
    'EXECUTABLE')],
