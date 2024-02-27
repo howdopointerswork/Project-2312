@@ -60,10 +60,10 @@ legend:
    {I will add aditional stuff to your report, so this is what I want from you}
 
 ==dbms==
-- [ ] Logical Design
-- [ ] Physical Design 
-- [ ] Data management
-- [ ] Queries
+- [x] Logical Design
+- [x] Physical Design 
+- [x] Data management
+- [x] Queries
 { I will not wright instactions for myself lol 😌}
 
 ==programming==
