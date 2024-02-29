@@ -1,3 +1,4 @@
+# THIS ONE WAS PLANNED TO BE USED WITH OOP CLASS BUT IT WAY CHANGE
 def has_decimal_part(number):
     # Convert the number to a string
     num_str = str(number)

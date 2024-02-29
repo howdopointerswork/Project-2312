@@ -1,6 +1,12 @@
 import tkinter as tk
 
+# I Expect this Class to contain information that is need for the main loop
+# all methods that create a new window should create a frame for it's content
+# this class should than be used in a main loop to create an object to interact with
+# to get values, call OOP and prosidural method etc
 class ScreenManager:
+    # I Expect here to be a UI looks related varibles and 
+    # methods that are going to be used by OOP methods
     def __init__(self, root):
         self.root = root
         self.screen_width = root.winfo_screenwidth()
@@ -11,14 +17,17 @@ class ScreenManager:
         self.button_bg_color="#223C5B"
         self.back_bg="#DF1E34"
 
-
+    # I Expect this method to be used by a button 
+    # to mutate the value in a class and to exit the window
+    # it should be used by go_back()
     def on_button_click_and_close(self, button_value):
         self.choice = button_value
         self.root.quit()
 
 
-
-
+    # I Expect this method to display options centered 
+    # on the screen and Expect it to return a value that will 
+    # represent the choice of action to do, like Edit, Delete etc
     def main_screen(self):
         # Clear the screen
         for widget in self.root.winfo_children():
@@ -59,7 +68,11 @@ class ScreenManager:
         self.root.update_idletasks()  # Update the GUI to reflect changes
 
 
-
+    # I Expect this method to get the databaces tables and display them in the 
+    # grid by 3 that will change the size depending on the ammount of inputs
+    # This should return a value that is equal to a number of a current choice and
+    # the bumber of previous choice written as "current_num.previous.num"
+    # it is implemented this way to avoid problems with main loop
     def grid_table_chooser(self, buttons):
         # Clear the screen
         for widget in self.root.winfo_children():
@@ -104,6 +117,10 @@ class ScreenManager:
         self.root.update_idletasks()  # Update the GUI to reflect changes
 
 
+    # I Expect this to be part of our OOP method
+    # and I want it to create a frame where all the other 
+    # stuff that is going to be updated going to be placed
+    # WE MAY CHANGE THIS IDEA AND METHOD IT'S NOT CONCREATE
     def title_table_name(self, title):
         # Clear the screen
         for widget in self.root.winfo_children():
@@ -118,40 +135,11 @@ class ScreenManager:
     
         return frame
 
-    def display_selected_option(self):
-        selected_option = self.selected_option.get()
-        print(f"Selected Option: {selected_option}")
-    def add_more(self, button_value):
-        print("I am working")
-        self.choice = button_value
-        self.show_times = self.show_times + 1
-        print("I added")
-        self.root.quit()
-    def dropdown_column_selector(self, options, frame, return_this):
-        self.selected_option = tk.StringVar()
-        self.selected_option.set(options[0])  # Set the default selected option
 
-        def on_enter(e):
-            dropdown_menu.config(cursor="hand2", bg=self.button_bg_color, fg='white')
-
-        # Create the dropdown menu
-        dropdown_menu = tk.OptionMenu(frame, self.selected_option, *options)
-        dropdown_menu.pack(pady=10)
-
-        # Button to display the selected option
-        display_button = tk.Button(frame, text="add more", command=lambda: self.add_more(return_this))
-        display_button.pack(pady=10)
-
-        # Calculate available height for buttons
-        available_height = self.screen_height // 2
-
-        # Calculate button height based on available height
-        button_height = available_height // 4
-
-        self.root.update_idletasks()  # Update the GUI to reflect changes
-
-
-
+    # I Expect this to be used to display a button that is always going to be 
+    # in the left down corner and it should mutate the choice value
+    # the new choice value will be read by main loop to determine what to display
+    # because of this trick the illusion of "going back" is created 
     def go_back(self, return_this):
         # Create the "back" button and add it to the frame
         button = tk.Button(self.root, text="Back", command=lambda: self.on_button_click_and_close(return_this))
