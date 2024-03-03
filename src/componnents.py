@@ -1,3 +1,6 @@
+#1. clear the screen
+#2. make UI frame  
+#3. have a loop where you create and than pack or grid 
 import tkinter as tk
 
 # I Expect this Class to contain information that is need for the main loop
@@ -29,7 +32,7 @@ class ScreenManager:
     # on the screen and Expect it to return a value that will 
     # represent the choice of action to do, like Edit, Delete etc
     def main_screen(self):
-        # Clear the screen
+       # Clear the screen
         for widget in self.root.winfo_children():
             widget.destroy()
 
@@ -52,18 +55,10 @@ class ScreenManager:
         for i, name in enumerate(opts):
             button = tk.Button(button_frame, text=name,
                 command=lambda i=i: self.on_button_click_and_close(i+1), width=20)
-            button.bind("<Enter>", on_enter)
-            button.config(bg=self.button_bg_color, fg='white')
 
             button.pack(pady=button_height // 8,
             padx=400, anchor="center", expand=True, fill="both")
 
-
-        # Calculate available height for buttons
-        available_height = self.screen_height // 2
-
-        # Calculate button height based on available height
-        button_height = available_height // 4
 
         self.root.update_idletasks()  # Update the GUI to reflect changes
 
@@ -101,13 +96,11 @@ class ScreenManager:
             button = tk.Button(button_frame, text=label,
                 command=lambda i=i: self.on_button_click_and_close(i + 1 + addon),
                 width=button_width, height=button_height)
-            button.bind("<Enter>", on_enter)
-            button.config(bg=self.button_bg_color, fg='white')
-
 
             button.grid(row=i // num_columns, column=i % num_columns,
                 padx=40, pady=50)
     
+        # ASK GPT
         # Center the button grid in the frame
         for c in range(num_columns):
             button_frame.grid_columnconfigure(c, weight=1)
@@ -134,6 +127,8 @@ class ScreenManager:
         label.pack()
     
         return frame
+
+
 
 
     # I Expect this to be used to display a button that is always going to be 
