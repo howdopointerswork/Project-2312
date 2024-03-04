@@ -43,10 +43,13 @@ def main():
             if (etc.has_decimal_part(screen_manager.choice)):
                 screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
                 screen_manager.go_back(1)
+                screen_manager.confirm(0,1)
                 root.update()
 
                 root.mainloop()
                 print("Choice:", screen_manager.choice)
+
+  
 
         if (screen_manager.choice == 2):
             screen_manager.grid_table_chooser(tables)
@@ -58,6 +61,7 @@ def main():
             if (etc.has_decimal_part(screen_manager.choice)):
                 screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
                 screen_manager.go_back(2)
+                screen_manager.confirm(0,2)
                 root.update()
 
                 root.mainloop()
@@ -72,6 +76,7 @@ def main():
             if (etc.has_decimal_part(screen_manager.choice)):
                 screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
                 screen_manager.go_back(3)
+                screen_manager.confirm(0,3)
                 root.update()
 
                 root.mainloop()
@@ -86,12 +91,16 @@ def main():
             if (etc.has_decimal_part(screen_manager.choice)):
                 screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
                 screen_manager.go_back(4)
+                screen_manager.confirm(0,4)
                 root.update()
 
                 root.mainloop()
                 print("Choice:", screen_manager.choice)
 
 
+   
+
+     
 
         #screen_manager.choice = 0
 
@@ -99,4 +108,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

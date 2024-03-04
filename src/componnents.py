@@ -82,6 +82,8 @@ class ScreenManager:
         num_buttons = len(buttons)
         num_columns = min(num_buttons, 3)
         num_rows = (num_buttons + num_columns - 1) // num_columns
+      
+        
     
         # Calculate button size similar to create_buttons method
         button_height = self.screen_height - 1000 // (2 * num_rows)
@@ -142,5 +144,29 @@ class ScreenManager:
         button.place(relx=0.02, rely=0.95)  # Place the button at 2% from the left and 95% from the top of the window
         
         self.root.update_idletasks()  # Update the GUI to reflect changes
+
+
+    #I expect this to be used as a confirm button to be used to execute SQL
+    #commands when data is inserted into the input fields 
+    #For everything except Search, it should return you to the main screen
+    #For Search, it will take you to a new page   
+    def confirm(self, return_this, table):
+        #change command so it calls a method that executes the command, then calls on_button_click_and_close
+        button = tk.Button(self.root, text="Confirm", command=lambda: self.execute(return_this, table))
+        #config colour here
+        button.place(relx=0.45, rely=0.80)
+
+    #I expect this function to be used by the Confirm function to execute SQL
+    #commands
+    #This should handle returning to the main page when pressing Confirm
+    #backpage keeps track of the last page before pressing Confirm
+    def execute(self, return_this, table):
+        
+        if(table != 1):
+            self.on_button_click_and_close(return_this)
+        else:
+            self.title_table_name('Results') #hard-coded for now
+            #self.go_back()
+               
 
 
