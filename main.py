@@ -22,6 +22,7 @@ def main():
     # and than the value that go_back() will return will be than used to determine 
     # what if condition to display
     while screen_manager.choice != -1:
+#<><><><><><><><><><><><><><><> Main screen <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 0):
             screen_manager.main_screen()
             screen_manager.go_back(-1)
@@ -31,6 +32,7 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
     
+#<><><><><><><><><><><><><><><> Search option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 1):
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
@@ -38,19 +40,31 @@ def main():
 
             root.mainloop()
             print("Choice:", screen_manager.choice)
-            # I Expect this part to use OOP method to update it's contence
-            # and than be terminated by "canfirm" method that is goint to be prosidual
-            if (etc.has_decimal_part(screen_manager.choice)):
-                screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
-                screen_manager.go_back(1)
-                screen_manager.confirm(0,1)
-                root.update()
+        # I Expect this part to use OOP method to update it's contence
+        # and than be terminated by "canfirm" method that is goint to be prosidual
+        confirm_temp =0
+        if (etc.ends_with(screen_manager.choice, 1)):
+            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            screen_manager.go_back(1)
+            screen_manager.confirm(11)
+            root.update()
 
-                root.mainloop()
-                print("Choice:", screen_manager.choice)
+            # I used a temp choice to store current choice for future go_back()
+            # have it before mainloop() because otherwise it would be assigned to new choice 
+            confirm_temp = screen_manager.choice
+            print("temp choice:", confirm_temp)
+ 
+            root.mainloop()
+            print("Choice:", screen_manager.choice)
+        if (screen_manager.choice == 11):
+            screen_manager.title_table_name('Results') 
+            screen_manager.go_back(confirm_temp)
+            root.update()
 
-  
-
+            root.mainloop()
+            print("Choice:", screen_manager.choice)
+            print("New Choice that we store for go back:", confirm_temp)
+#<><><><><><><><><><><><><><><> Edit option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 2):
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
@@ -58,14 +72,16 @@ def main():
 
             root.mainloop()
             print("Choice:", screen_manager.choice)
-            if (etc.has_decimal_part(screen_manager.choice)):
-                screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
-                screen_manager.go_back(2)
-                screen_manager.confirm(0,2)
-                root.update()
+        if (etc.ends_with(screen_manager.choice, 2)):
+            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            screen_manager.go_back(2)
+            screen_manager.confirm(0)
+            root.update()
 
-                root.mainloop()
-                print("Choice:", screen_manager.choice)
+            root.mainloop()
+            print("Choice:", screen_manager.choice)
+
+#<><><><><><><><><><><><><><><> Add option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 3):
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
@@ -73,14 +89,16 @@ def main():
 
             root.mainloop()
             print("Choice:", screen_manager.choice)
-            if (etc.has_decimal_part(screen_manager.choice)):
-                screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
-                screen_manager.go_back(3)
-                screen_manager.confirm(0,3)
-                root.update()
+        if (etc.ends_with(screen_manager.choice, 3)):
+            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            screen_manager.go_back(3)
+            screen_manager.confirm(0)
+            root.update()
 
-                root.mainloop()
-                print("Choice:", screen_manager.choice)
+            root.mainloop()
+            print("Choice:", screen_manager.choice)
+
+#<><><><><><><><><><><><><><><> Delete option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 4):
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
@@ -88,14 +106,14 @@ def main():
 
             root.mainloop()
             print("Choice:", screen_manager.choice)
-            if (etc.has_decimal_part(screen_manager.choice)):
-                screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
-                screen_manager.go_back(4)
-                screen_manager.confirm(0,4)
-                root.update()
+        if (etc.ends_with(screen_manager.choice, 4)):
+            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            screen_manager.go_back(4)
+            screen_manager.confirm(0)
+            root.update()
 
-                root.mainloop()
-                print("Choice:", screen_manager.choice)
+            root.mainloop()
+            print("Choice:", screen_manager.choice)
 
 
    

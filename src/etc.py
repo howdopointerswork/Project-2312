@@ -16,4 +16,15 @@ def has_decimal_part(number):
     else:
         return False
 
-
+def ends_with(number, after_point):
+    # Convert number to string
+    num_str = str(number)
+    
+    # Construct the pattern for ends with
+    pattern = ".{}"
+    
+    # Check if the last characters match the pattern
+    if num_str.endswith(pattern.format(after_point)):
+        return True
+    else:
+        return False

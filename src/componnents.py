@@ -41,8 +41,6 @@ class ScreenManager:
         button_frame.pack(expand=True, fill="both")
         button_frame.configure(bg=self.bg_color)
 
-        def on_enter(e):
-            button.config(cursor="hand2", bg=self.button_bg_color, fg='white')
 
        # Calculate available height for buttons
         available_height = self.screen_height // 2
@@ -82,15 +80,10 @@ class ScreenManager:
         num_buttons = len(buttons)
         num_columns = min(num_buttons, 3)
         num_rows = (num_buttons + num_columns - 1) // num_columns
-      
-        
     
         # Calculate button size similar to create_buttons method
         button_height = self.screen_height - 1000 // (2 * num_rows)
         button_width = self.screen_width - 1000 // (2 * num_columns)
-
-        def on_enter(e):
-            button.config(cursor="hand2", bg=self.button_bg_color, fg='white')
 
         addon = self.choice / 10
         # Create buttons and add them to the frame in a grid layout
@@ -146,27 +139,33 @@ class ScreenManager:
         self.root.update_idletasks()  # Update the GUI to reflect changes
 
 
-    #I expect this to be used as a confirm button to be used to execute SQL
-    #commands when data is inserted into the input fields 
-    #For everything except Search, it should return you to the main screen
-    #For Search, it will take you to a new page   
-    def confirm(self, return_this, table):
+    # I Expect this to be used as a confirm button to be used to execute SQL
+    # commands when data is inserted into the input fields 
+    # For everything except Search, it should return you to the main screen
+    # For Search, it will take you to a new page   
+    def confirm(self, return_this):
         #change command so it calls a method that executes the command, then calls on_button_click_and_close
-        button = tk.Button(self.root, text="Confirm", command=lambda: self.execute(return_this, table))
+        button = tk.Button(self.root, text="Confirm", command=lambda: self.on_button_click_and_close(return_this))
         #config colour here
         button.place(relx=0.45, rely=0.80)
+    
+    # it's all caps so you would pay attansion, I am not screeming at you or something :))))
+    # IT IS A BAD IDEA TO HAVE A HANDLING OF WHAT TO DO NEXT IN A SEPARATE FUNCTION ISTEAD OF THE MAIN LOOP
+    # PLEACE TRY TO NOT DO SOMETHING LIKE THIS, IT MAY COUSE SCALING PROBLEMS AND It'S GOING TO BE A HELL  
+    # TO DEBUG, I FIXED THAT SO NOW THERE IS NO REASON FOR HARDCODED STUFF
+    # AFTER READING THIS MESSAGE, PLS DELETE AN EXECUTE method 
 
     #I expect this function to be used by the Confirm function to execute SQL
     #commands
     #This should handle returning to the main page when pressing Confirm
     #backpage keeps track of the last page before pressing Confirm
-    def execute(self, return_this, table):
-        
-        if(table != 1):
-            self.on_button_click_and_close(return_this)
-        else:
-            self.title_table_name('Results') #hard-coded for now
-            #self.go_back()
-               
+#    def execute(self, return_this, table):
+#        
+#        if(table != 1):
+#            self.on_button_click_and_close(return_this)
+#        else:
+#            self.title_table_name('Results') #hard-coded for now
+#            self.go_back(self.choice)
+#               
 
 
