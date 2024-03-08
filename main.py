@@ -17,6 +17,9 @@ def main():
     screen_manager = com.ScreenManager(root)
 
     tables = db.db_get_tables()
+
+
+    
     # main loop
     # I Expect to screen_manager.choice to be updated by go_back() 
     # and than the value that go_back() will return will be than used to determine 
@@ -47,6 +50,14 @@ def main():
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
             screen_manager.go_back(1)
             screen_manager.confirm(11)
+            columns = [item[0] for item in db.db_get_columns(tables[int(confirm_temp)-1])]
+            columns.append('*')
+            screen_manager.columns_conditions(columns)
+            #screen_manager.plus_condition()
+
+           # screen_manager.add_dropdown(columns)
+            #screen_manager.add_condition()
+
             root.update()
 
             # I used a temp choice to store current choice for future go_back()
@@ -58,7 +69,7 @@ def main():
             print("Choice:", screen_manager.choice)
         if (screen_manager.choice == 11):
             screen_manager.title_table_name('Results') 
-            screen_manager.go_back(confirm_temp)
+            screen_manager.go_back(confirm_temp)            
             root.update()
 
             root.mainloop()
@@ -76,6 +87,11 @@ def main():
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
             screen_manager.go_back(2)
             screen_manager.confirm(0)
+            columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
+            columns.append('*')
+            screen_manager.columns_conditions(columns)
+
+            
             root.update()
 
             root.mainloop()
@@ -93,6 +109,11 @@ def main():
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
             screen_manager.go_back(3)
             screen_manager.confirm(0)
+            columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
+            columns.append('*')
+            screen_manager.columns_conditions(columns)
+
+
             root.update()
 
             root.mainloop()
@@ -110,6 +131,11 @@ def main():
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
             screen_manager.go_back(4)
             screen_manager.confirm(0)
+            columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
+            columns.append('*')
+            screen_manager.columns_conditions(columns)
+           
+
             root.update()
 
             root.mainloop()
@@ -126,5 +152,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 

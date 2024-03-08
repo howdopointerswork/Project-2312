@@ -20,6 +20,9 @@ class ScreenManager:
         self.button_bg_color="#223C5B"
         self.back_bg="#DF1E34"
 
+        self.pos_col = 0.20
+        self.pos_con = 0.20
+
     # I Expect this method to be used by a button 
     # to mutate the value in a class and to exit the window
     # it should be used by go_back()
@@ -148,24 +151,88 @@ class ScreenManager:
         button = tk.Button(self.root, text="Confirm", command=lambda: self.on_button_click_and_close(return_this))
         #config colour here
         button.place(relx=0.45, rely=0.80)
+
+
+
+
+    def columns_conditions(self, options):
     
-    # it's all caps so you would pay attansion, I am not screeming at you or something :))))
-    # IT IS A BAD IDEA TO HAVE A HANDLING OF WHAT TO DO NEXT IN A SEPARATE FUNCTION ISTEAD OF THE MAIN LOOP
-    # PLEACE TRY TO NOT DO SOMETHING LIKE THIS, IT MAY COUSE SCALING PROBLEMS AND It'S GOING TO BE A HELL  
-    # TO DEBUG, I FIXED THAT SO NOW THERE IS NO REASON FOR HARDCODED STUFF
-    # AFTER READING THIS MESSAGE, PLS DELETE AN EXECUTE method 
+        add_col = tk.Button(self.root, text="+", command=lambda: self.add(options, self.pos_col, True))
+        add_col.place(relx=0.30, rely=0.70)
 
-    #I expect this function to be used by the Confirm function to execute SQL
-    #commands
-    #This should handle returning to the main page when pressing Confirm
-    #backpage keeps track of the last page before pressing Confirm
-#    def execute(self, return_this, table):
-#        
-#        if(table != 1):
-#            self.on_button_click_and_close(return_this)
-#        else:
-#            self.title_table_name('Results') #hard-coded for now
-#            self.go_back(self.choice)
-#               
+        add_con = tk.Button(self.root, text="+", command=lambda: self.add(options, self.pos_con, False))
+        add_con.place(relx=0.60, rely=0.70)  
 
+        
+        default = tk.StringVar()
+        default.set(options[0])
+
+        dropdown = tk.OptionMenu(self.root, default, *options)  
+        dropdown.place(relx=0.30, rely=0.10)
+
+        operators = ['=', '>', '<', '>=', '<=', "!="]
+        op = tk.StringVar()
+        op.set(operators[0])
+
+
+        input_box = tk.Entry(self.root, width=15)
+        input_box.place(relx=0.45, rely=0.10)    
+
+        sign_menu = tk.OptionMenu(self.root, op, *operators)
+        sign_menu.place(relx=0.58, rely=0.10)
+
+        condition_box = tk.Entry(self.root, width=15)
+        condition_box.place(relx=0.65, rely=0.10) 
+
+        self.pos_col = 0.20
+        self.pos_con = 0.20
+
+
+        
+            
+      
+
+    #soon to be add_dropdown based on placement of + button
+    def add(self, options, pos, flag):
+
+        if(flag):
+
+            
+            if(self.pos_col < 0.70): #can change to available
+
+
+                default = tk.StringVar()
+                default.set(options[0])
+
+                dropdown = tk.OptionMenu(self.root, default, *options)  
+                dropdown.place(relx=0.30, rely=self.pos_col)   
+
+                self.pos_col += 0.10
+
+            else:
+
+                error = tk.Label(self.root, text="Error: Too many columns!", fg="red")
+                error.place(relx=0.30, rely=0.90)
+        else:
+
+            if(self.pos_con < 0.70): #can calculate available height rather than hard code
+
+                input_box = tk.Entry(self.root, width=15)
+                input_box.place(relx=0.45, rely=self.pos_con)  
+
+                operators = ['=', '>', '<', '>=', '<=', "!="]
+                op = tk.StringVar()
+                op.set(operators[0])  
+
+                sign_menu = tk.OptionMenu(self.root, op, *operators)
+                sign_menu.place(relx=0.58, rely=self.pos_con)
+
+                condition_box = tk.Entry(self.root, width=15)
+                condition_box.place(relx=0.65, rely=self.pos_con) 
+
+                self.pos_con += 0.10
+            else:
+            
+                error = tk.Label(self.root, text="Error: Too many conditions!", fg="red")
+                error.place(relx=0.60, rely=0.90)     
 
