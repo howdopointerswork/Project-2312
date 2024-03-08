@@ -20,8 +20,9 @@ class ScreenManager:
         self.button_bg_color="#223C5B"
         self.back_bg="#DF1E34"
 
-        self.pos_col = 0.20
-        self.pos_con = 0.20
+        self.row = 2
+
+ 
 
     # I Expect this method to be used by a button 
     # to mutate the value in a class and to exit the window
@@ -155,37 +156,57 @@ class ScreenManager:
 
 
 
-    def columns_conditions(self, options):
-    
-        add_col = tk.Button(self.root, text="+", command=lambda: self.add(options, self.pos_col, True))
-        add_col.place(relx=0.30, rely=0.70)
+    def columns(self, options):
 
-        add_con = tk.Button(self.root, text="+", command=lambda: self.add(options, self.pos_con, False))
-        add_con.place(relx=0.60, rely=0.70)  
+
+
+        frame = tk.Frame(self.root)
+        frame.configure(bg=self.bg_color)
+
+
+    
+        add_col = tk.Button(frame, text="+", command=lambda: self.add_column(frame, options, add_col))
+        add_col.grid(row=self.row, column=2, pady=20)
+
+        #add_con = tk.Button(self.root, text="+", command=lambda: self.add(options, self.pos_con, False))
+        #add_con.place(relx=0.60, rely=0.70)  
 
         
         default = tk.StringVar()
         default.set(options[0])
 
-        dropdown = tk.OptionMenu(self.root, default, *options)  
-        dropdown.place(relx=0.30, rely=0.10)
+        dropdown = tk.OptionMenu(frame, default, *options)  
+        dropdown.grid(row=1, column=2)
+
+        frame.pack(padx=(0,self.screen_width//4), pady=(0,self.screen_height//4))
+
+        
+
+
+    def conditions(self):    
+
+
+        frame = tk.Frame(self.root)
+        frame.configure(bg=self.bg_color)
+
+        add_col = tk.Button(frame, text="+")
+        #add_col.grid(row=self.row, column=2, pady=20)
 
         operators = ['=', '>', '<', '>=', '<=', "!="]
         op = tk.StringVar()
         op.set(operators[0])
 
 
-        input_box = tk.Entry(self.root, width=15)
-        input_box.place(relx=0.45, rely=0.10)    
+        input_box = tk.Entry(frame, width=15)
+        input_box.grid(row=1, column=1, padx=10)    
 
-        sign_menu = tk.OptionMenu(self.root, op, *operators)
-        sign_menu.place(relx=0.58, rely=0.10)
+        sign_menu = tk.OptionMenu(frame, op, *operators)
+        sign_menu.grid(row=1, column=2, padx=10)
 
-        condition_box = tk.Entry(self.root, width=15)
-        condition_box.place(relx=0.65, rely=0.10) 
+        condition_box = tk.Entry(frame, width=15)
+        condition_box.grid(row=1, column=3, padx=10) 
 
-        self.pos_col = 0.20
-        self.pos_con = 0.20
+        frame.pack(padx=(self.screen_width//8,0), pady=(0,self.screen_height//4))
 
 
         
@@ -193,46 +214,53 @@ class ScreenManager:
       
 
     #soon to be add_dropdown based on placement of + button
-    def add(self, options, pos, flag):
+    def add_column(self, frame, options, button):
 
-        if(flag):
+        if(self.row < 7): #will change this to calculate with screen dimensions in mind
+
+            #will fix inconsistencies in padding
 
             
-            if(self.pos_col < 0.70): #can change to available
+            #if(self.pos_col < 0.70): #can change to available
+            self.row += 2
+
+            button.grid(row=self.row, column=2)
+
+            self.row -= 1
+
+            default = tk.StringVar()
+            default.set(options[0])
+
+            dropdown = tk.OptionMenu(frame, default, *options)  
+            dropdown.grid(row=self.row, column=2, pady=20)   
 
 
-                default = tk.StringVar()
-                default.set(options[0])
 
-                dropdown = tk.OptionMenu(self.root, default, *options)  
-                dropdown.place(relx=0.30, rely=self.pos_col)   
 
-                self.pos_col += 0.10
+            #else:
 
-            else:
+             #   error = tk.Label(self.root, text="Error: Too many columns!", fg="red")
+              #  error.place(relx=0.30, rely=0.90)
+        #else:
 
-                error = tk.Label(self.root, text="Error: Too many columns!", fg="red")
-                error.place(relx=0.30, rely=0.90)
-        else:
+         #   if(self.pos_con < 0.70): #can calculate available height rather than hard code
 
-            if(self.pos_con < 0.70): #can calculate available height rather than hard code
+          #      input_box = tk.Entry(self.root, width=15)
+           #     input_box.place(relx=0.45, rely=self.pos_con)  
 
-                input_box = tk.Entry(self.root, width=15)
-                input_box.place(relx=0.45, rely=self.pos_con)  
+            #    operators = ['=', '>', '<', '>=', '<=', "!="]
+             #   op = tk.StringVar()
+              #  op.set(operators[0])  
 
-                operators = ['=', '>', '<', '>=', '<=', "!="]
-                op = tk.StringVar()
-                op.set(operators[0])  
+               # sign_menu = tk.OptionMenu(self.root, op, *operators)
+                #sign_menu.place(relx=0.58, rely=self.pos_con)
 
-                sign_menu = tk.OptionMenu(self.root, op, *operators)
-                sign_menu.place(relx=0.58, rely=self.pos_con)
+                #condition_box = tk.Entry(self.root, width=15)
+                #condition_box.place(relx=0.65, rely=self.pos_con) 
 
-                condition_box = tk.Entry(self.root, width=15)
-                condition_box.place(relx=0.65, rely=self.pos_con) 
-
-                self.pos_con += 0.10
-            else:
+                #self.pos_con += 0.10
+            #else:
             
-                error = tk.Label(self.root, text="Error: Too many conditions!", fg="red")
-                error.place(relx=0.60, rely=0.90)     
+             #   error = tk.Label(self.root, text="Error: Too many conditions!", fg="red")
+              #  error.place(relx=0.60, rely=0.90)     
 

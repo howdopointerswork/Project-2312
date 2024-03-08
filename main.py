@@ -52,7 +52,8 @@ def main():
             screen_manager.confirm(11)
             columns = [item[0] for item in db.db_get_columns(tables[int(confirm_temp)-1])]
             columns.append('*')
-            screen_manager.columns_conditions(columns)
+            screen_manager.columns(columns)
+            #screen_manager.conditions()
             #screen_manager.plus_condition()
 
            # screen_manager.add_dropdown(columns)
@@ -89,7 +90,7 @@ def main():
             screen_manager.confirm(0)
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
-            screen_manager.columns_conditions(columns)
+           # screen_manager.columns_conditions(columns)
 
             
             root.update()
@@ -111,7 +112,7 @@ def main():
             screen_manager.confirm(0)
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
-            screen_manager.columns_conditions(columns)
+          #  screen_manager.columns_conditions(columns)
 
 
             root.update()
@@ -133,7 +134,7 @@ def main():
             screen_manager.confirm(0)
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
-            screen_manager.columns_conditions(columns)
+           # screen_manager.columns_conditions(columns)
            
 
             root.update()
