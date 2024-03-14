@@ -208,29 +208,29 @@ class ScreenManager:
         frame.configure(bg=self.bg_color)
 
         add_col = tk.Button(frame, text="+")
-        #add_col.grid(row=self.row, column=2, pady=20)
+        add_col.grid(row=self.row, column=2, pady=20)
 
-        if(self.execute == 1): #working on adding conditions here
-            operators = ['=', '>', '<', '>=', '<=', "!="]
-            op = tk.StringVar()
-            op.set(operators[0])
+        #if(self.execute == 1): #working on adding conditions here
+        operators = ['=', '>', '<', '>=', '<=', "!="]
+        op = tk.StringVar()
+        op.set(operators[0])
 
-            sign_menu = tk.OptionMenu(frame, op, *operators)
-            sign_menu.grid(row=1, column=2, padx=10)
+        sign_menu = tk.OptionMenu(frame, op, *operators)
+        sign_menu.grid(row=1, column=2, padx=10)
 
-            condition_box = tk.Entry(frame, width=15)
-            condition_box.grid(row=1, column=3, padx=10) 
+        condition_box = tk.Entry(frame, width=15)
+        condition_box.grid(row=1, column=3, padx=10) 
 
             #Will fix placement
-            input_box = tk.Entry(frame, width=15)
-            input_box.grid(row=1, column=1, padx=10)    
+        input_box = tk.Entry(frame, width=15)
+        input_box.grid(row=1, column=1, padx=10)    
 
-        else:   
+           
 
             #Have to fix placement of this box
-            input_box = tk.Entry(frame, width=5)
-            input_box.grid(row=1, column=3, padx=10)
-            self.condition.append(input_box.get())
+        input_box = tk.Entry(frame, width=20)
+        input_box.grid(row=1, column=3, padx=10)
+        self.condition.append(input_box.get())
 
 
 
