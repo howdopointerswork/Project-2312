@@ -40,7 +40,7 @@ class ScreenManager:
         #call execute
         self.root.quit()
         if(len(self.command) > 0):
-            db.execute(self.execute, self.current, self.command[0].get(), self.condition[0])
+            db.execute(self.execute, self.current, self.command[0].get(), self.condition[0].get())
         
 
 
@@ -227,10 +227,11 @@ class ScreenManager:
 
            
 
-            #Have to fix placement of this box
-        input_box = tk.Entry(frame, width=20)
-        input_box.grid(row=1, column=3, padx=10)
-        self.condition.append(input_box.get())
+        #Have to fix placement of this box
+        #Separate values by comma
+        #Will add functionality for Foreign Keys
+        
+        self.condition.append(input_box)
 
 
 
