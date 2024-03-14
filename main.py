@@ -48,22 +48,30 @@ def main():
         confirm_temp =0
         if (etc.ends_with(screen_manager.choice, 1)):
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            screen_manager.current = tables[int(screen_manager.choice)-1]
             screen_manager.go_back(1)
             screen_manager.confirm(11)
-            columns = [item[0] for item in db.db_get_columns(tables[int(confirm_temp)-1])]
+            screen_manager.execute = 1
+            screen_manager.conditions()
+            columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
             screen_manager.columns(columns)
-            #screen_manager.conditions()
-            #screen_manager.plus_condition()
 
-           # screen_manager.add_dropdown(columns)
-            #screen_manager.add_condition()
+
+
+           
+            #if(screen_manager.confirm == True):
+
+                #db.execute(screen_manager.choice, tables[int(screen_manager.choice)-1])
 
             root.update()
 
             # I used a temp choice to store current choice for future go_back()
             # have it before mainloop() because otherwise it would be assigned to new choice 
             confirm_temp = screen_manager.choice
+
+
+
             print("temp choice:", confirm_temp)
  
             root.mainloop()
@@ -86,10 +94,14 @@ def main():
             print("Choice:", screen_manager.choice)
         if (etc.ends_with(screen_manager.choice, 2)):
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            screen_manager.current = tables[int(screen_manager.choice)-1]
             screen_manager.go_back(2)
             screen_manager.confirm(0)
+            screen_manager.execute = 2
+            screen_manager.conditions()
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
+            screen_manager.columns(columns)
            # screen_manager.columns_conditions(columns)
 
             
@@ -108,10 +120,14 @@ def main():
             print("Choice:", screen_manager.choice)
         if (etc.ends_with(screen_manager.choice, 3)):
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            screen_manager.current = tables[int(screen_manager.choice)-1]
             screen_manager.go_back(3)
             screen_manager.confirm(0)
+            screen_manager.execute = 3
+            screen_manager.conditions()
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
+            screen_manager.columns(columns)
           #  screen_manager.columns_conditions(columns)
 
 
@@ -132,6 +148,8 @@ def main():
             screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
             screen_manager.go_back(4)
             screen_manager.confirm(0)
+            screen_manager.execute = 4
+            screen_manager.conditions()
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
            # screen_manager.columns_conditions(columns)

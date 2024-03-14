@@ -27,3 +27,36 @@ def db_get_columns(table):
 
 def db_end():
     conn.close()
+
+
+def execute(choice, table, column, type_condition):
+
+    cursor = conn.cursor()
+
+
+    #column argument above will soon be an array (command array) to loop through
+    #iterating done in componnents.py, hard-coded as first element in array for now  
+
+    if(choice == 1):
+
+        cursor.execute("SELECT " + column + " FROM " + table[0] + ";" )
+
+        for i in cursor.fetchall(): #working on display here for search, printing for now
+
+            print(i[0])
+    #if(choice == 2): Edit
+
+        
+
+    #if(choice == 3):
+
+       # cursor.execute("INSERT INTO " + table[0] + " (" + column + ")" + " VALUES " + "(" + type_condition + ")" + ";")
+
+    #if(choice == 4): (Delete)
+      
+
+    #clear array here
+    conn.commit()
+    cursor.close()    
+
+

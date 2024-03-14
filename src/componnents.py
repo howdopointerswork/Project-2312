@@ -2,6 +2,7 @@
 #2. make UI frame  
 #3. have a loop where you create and than pack or grid 
 import tkinter as tk
+from src import bookingdb as db
 
 # I Expect this Class to contain information that is need for the main loop
 # all methods that create a new window should create a frame for it's content
@@ -20,7 +21,14 @@ class ScreenManager:
         self.button_bg_color="#223C5B"
         self.back_bg="#DF1E34"
 
-        self.row = 2
+        self.row = 2 #for spacing. Will be fixed at end
+        self.execute = 0 #separate choice for execute function in bookingdb.py
+        self.command = [] #to hold StringVars for each OptionMenu
+        self.condition = [] #to hold the conditions/values for each OptionMenu
+        #self.command_count = 0 
+        #self.condition_count = 0
+        self.current = None
+
 
  
 
@@ -29,7 +37,11 @@ class ScreenManager:
     # it should be used by go_back()
     def on_button_click_and_close(self, button_value):
         self.choice = button_value
+        #call execute
         self.root.quit()
+        if(len(self.command) > 0):
+            db.execute(self.execute, self.current, self.command[0].get(), self.condition[0])
+        
 
 
     # I Expect this method to display options centered 
@@ -172,6 +184,8 @@ class ScreenManager:
         #add_con.place(relx=0.60, rely=0.70)  
 
         
+        #self.select = tk.StringVar()
+        #self.select.set(options[0])
         default = tk.StringVar()
         default.set(options[0])
 
@@ -180,7 +194,11 @@ class ScreenManager:
 
         frame.pack(padx=(0,self.screen_width//4), pady=(0,self.screen_height//4))
 
-        
+        #self.command.insert(self.count,default)
+        self.command.append(default)
+
+
+
 
 
     def conditions(self):    
@@ -192,19 +210,30 @@ class ScreenManager:
         add_col = tk.Button(frame, text="+")
         #add_col.grid(row=self.row, column=2, pady=20)
 
-        operators = ['=', '>', '<', '>=', '<=', "!="]
-        op = tk.StringVar()
-        op.set(operators[0])
+        if(self.execute == 1): #working on adding conditions here
+            operators = ['=', '>', '<', '>=', '<=', "!="]
+            op = tk.StringVar()
+            op.set(operators[0])
+
+            sign_menu = tk.OptionMenu(frame, op, *operators)
+            sign_menu.grid(row=1, column=2, padx=10)
+
+            condition_box = tk.Entry(frame, width=15)
+            condition_box.grid(row=1, column=3, padx=10) 
+
+            #Will fix placement
+            input_box = tk.Entry(frame, width=15)
+            input_box.grid(row=1, column=1, padx=10)    
+
+        else:   
+
+            #Have to fix placement of this box
+            input_box = tk.Entry(frame, width=5)
+            input_box.grid(row=1, column=3, padx=10)
+            self.condition.append(input_box.get())
 
 
-        input_box = tk.Entry(frame, width=15)
-        input_box.grid(row=1, column=1, padx=10)    
 
-        sign_menu = tk.OptionMenu(frame, op, *operators)
-        sign_menu.grid(row=1, column=2, padx=10)
-
-        condition_box = tk.Entry(frame, width=15)
-        condition_box.grid(row=1, column=3, padx=10) 
 
         frame.pack(padx=(self.screen_width//8,0), pady=(0,self.screen_height//4))
 
@@ -232,35 +261,17 @@ class ScreenManager:
             default.set(options[0])
 
             dropdown = tk.OptionMenu(frame, default, *options)  
-            dropdown.grid(row=self.row, column=2, pady=20)   
+            dropdown.grid(row=self.row, column=2, pady=20)
+
+            self.command.append(default)
+ 
+
+    
+
+    #add condition function here def add_condition(self): 
 
 
 
 
-            #else:
 
-             #   error = tk.Label(self.root, text="Error: Too many columns!", fg="red")
-              #  error.place(relx=0.30, rely=0.90)
-        #else:
-
-         #   if(self.pos_con < 0.70): #can calculate available height rather than hard code
-
-          #      input_box = tk.Entry(self.root, width=15)
-           #     input_box.place(relx=0.45, rely=self.pos_con)  
-
-            #    operators = ['=', '>', '<', '>=', '<=', "!="]
-             #   op = tk.StringVar()
-              #  op.set(operators[0])  
-
-               # sign_menu = tk.OptionMenu(self.root, op, *operators)
-                #sign_menu.place(relx=0.58, rely=self.pos_con)
-
-                #condition_box = tk.Entry(self.root, width=15)
-                #condition_box.place(relx=0.65, rely=self.pos_con) 
-
-                #self.pos_con += 0.10
-            #else:
-            
-             #   error = tk.Label(self.root, text="Error: Too many conditions!", fg="red")
-              #  error.place(relx=0.60, rely=0.90)     
 
