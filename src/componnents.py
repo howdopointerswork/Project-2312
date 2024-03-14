@@ -22,12 +22,12 @@ class ScreenManager:
         self.back_bg="#DF1E34"
 
         self.row = 2 #for spacing. Will be fixed at end
-        self.execute = 0 #separate choice for execute function in bookingdb.py
-        self.command = [] #to hold StringVars for each OptionMenu
-        self.condition = [] #to hold the conditions/values for each OptionMenu
+        self.selected_columns = [] #to hold StringVars for each OptionMenu
+        self.input_box_list = [] #to hold the conditions/values for each OptionMenu
         #self.command_count = 0 
         #self.condition_count = 0
         self.current = None
+        self.execute = 0 #used for executing commands based on button
 
 
  
@@ -39,8 +39,9 @@ class ScreenManager:
         self.choice = button_value
         #call execute
         self.root.quit()
+        
         if(len(self.command) > 0):
-            db.execute(self.execute, self.current, self.command[0].get(), self.condition[0].get())
+            db.execute(self.execute, self.current, self.selected_columns[0].get(), self.input_box_list[0].get())
         
 
 
@@ -168,7 +169,7 @@ class ScreenManager:
 
 
 
-    def columns(self, options):
+    def columns_dropdown(self, options):
 
 
 
