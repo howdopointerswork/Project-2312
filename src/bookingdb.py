@@ -50,7 +50,7 @@ def execute(choice, table, columns, type_condition):
       
 
     if(choice == 3):
-       #print(type_condition) 
+       #To use add (for now), put inputs separated by comma as you would for a SQL query
        cursor.execute("INSERT INTO " + table[0] + " VALUES " + "(" + type_condition + ")" + ";")
 
     #if(choice == 4): (Delete)
