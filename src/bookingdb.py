@@ -28,8 +28,8 @@ def db_get_columns(table):
 def db_end():
     conn.close()
 
-
-def execute(choice, table, column, type_condition):
+# <><><><><><><>
+def db_select( table, column, type_condition):
 
     cursor = conn.cursor()
 
@@ -37,13 +37,17 @@ def execute(choice, table, column, type_condition):
     #column argument above will soon be an array (command array) to loop through
     #iterating done in componnents.py, hard-coded as first element in array for now  
 
-    if(choice == 1):
 
-        cursor.execute("SELECT " + column + " FROM " + table[0] + ";" )
+    cursor.execute("SELECT " + column + " FROM " + table + ";" )
 
-        for i in cursor.fetchall(): #working on display here for search, printing for now
+    for i in cursor.fetchall(): #working on display here for search, printing for now
 
-            print(i[0])
+        print(i[0])
+
+    # you wouln't have a one function for any query,
+    # because select, edit, insert require different variables
+    # why you make your lofi harder???
+    #if(choice == 1):
     #if(choice == 2): Edit
 
         

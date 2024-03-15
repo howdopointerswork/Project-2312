@@ -47,19 +47,33 @@ def main():
         # and than be terminated by "canfirm" method that is goint to be prosidual
         confirm_temp =0
         if (etc.ends_with(screen_manager.choice, 1)):
-            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame = screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame.pack(side="top", pady=65)
+            mother_frame = tk.Frame(root)
+            mother_frame.pack()
+
+            # <><><><><><><><><><><><>
+            #screen_manager.execute = 1
+            #            screen_manager.conditions()
+            options_temp = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
+            options_temp.append('*')
+            screen_manager.options = options_temp
+
+
+            screen_manager.create_left_frame(mother_frame)
+            screen_manager.add_element(screen_manager.leftFrame, screen_manager.create_dropdown_column)
+            screen_manager.create_dropdown_column(screen_manager.leftFrame)
+
+            screen_manager.create_right_frame(mother_frame)
+            screen_manager.add_element(screen_manager.rightFrame, screen_manager.create_entry_condition)
+            screen_manager.create_entry_condition(screen_manager.rightFrame)
+
             screen_manager.current = tables[int(screen_manager.choice)-1]
             screen_manager.go_back(1)
-            screen_manager.confirm(11)
-            screen_manager.execute = 1
-            screen_manager.conditions()
-            columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
-            columns.append('*')
-            screen_manager.columns(columns)
+            arr = [screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val]
+            screen_manager.confirm(arr, 11)
 
 
-
-           
             #if(screen_manager.confirm == True):
 
                 #db.execute(screen_manager.choice, tables[int(screen_manager.choice)-1])
@@ -77,7 +91,9 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
         if (screen_manager.choice == 11):
-            screen_manager.title_table_name('Results') 
+            screen_manager.clear_all_data()
+            title_frame = screen_manager.title_table_name('Results') 
+            title_frame.pack(side="top", pady=65)
             screen_manager.go_back(confirm_temp)            
             root.update()
 
@@ -93,15 +109,16 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
         if (etc.ends_with(screen_manager.choice, 2)):
-            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame = screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame.pack(side="top", pady=65)
+
             screen_manager.current = tables[int(screen_manager.choice)-1]
             screen_manager.go_back(2)
-            screen_manager.confirm(0)
-            screen_manager.execute = 2
-            screen_manager.conditions()
+            #screen_manager.confirm(0)
+            #screen_manager.conditions()
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
-            screen_manager.columns(columns)
+            #screen_manager.columns(columns)
            # screen_manager.columns_conditions(columns)
 
             
@@ -119,15 +136,16 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
         if (etc.ends_with(screen_manager.choice, 3)):
-            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame = screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame.pack(side="top", pady=65)
+ 
             screen_manager.current = tables[int(screen_manager.choice)-1]
             screen_manager.go_back(3)
-            screen_manager.confirm(0)
-            screen_manager.execute = 3
-            screen_manager.conditions()
+            #screen_manager.confirm(0)
+            #screen_manager.conditions()
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
-            screen_manager.columns(columns)
+            #screen_manager.columns(columns)
           #  screen_manager.columns_conditions(columns)
 
 
@@ -145,11 +163,12 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
         if (etc.ends_with(screen_manager.choice, 4)):
-            screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame = screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
+            title_frame.pack(side="top", pady=65)
+ 
             screen_manager.go_back(4)
-            screen_manager.confirm(0)
-            screen_manager.execute = 4
-            screen_manager.conditions()
+            #screen_manager.confirm(0)
+            #screen_manager.conditions()
             columns = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             columns.append('*')
            # screen_manager.columns_conditions(columns)
