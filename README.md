@@ -83,16 +83,16 @@ I suguest you to approach a project this way
 - [x] make a simple imput fiels
 
 after Physical Design will be made you will be able to do
-- [ ] adding 
+- [...] adding 
     see what table we would have and make an imput fiels
     that will co respond with the values that SQL insert query will need  
     so take a sql query and use variables as input to them
-- [ ] editing
-- [ ] deleting
+- [...] editing
+- [...] deleting
     when implementing a SQL delete query don't forget about WHERE
     and the fact that you should take user input to in which cases to delete data
     other wise you will delere all of our data
-- [ ] searching
+- [...] searching
     this is going to be simple SQL SELECT * FROM table WHERE query
 - [ ] do the design ( Caesar is a sucker for looks, but if you don't want to do it, it's fine )
     do this if will have time
