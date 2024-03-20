@@ -29,38 +29,156 @@ def db_end():
     conn.close()
 
 # <><><><><><><>
-def db_select( table, column, type_condition):
+
+def db_search(table, columns_to_search, condition_columns, operators, conditions):
 
     cursor = conn.cursor()
 
+    select_columns = ""
+    search_results = []
 
-    #column argument above will soon be an array (command array) to loop through
-    #iterating done in componnents.py, hard-coded as first element in array for now  
+    
+
+    
 
 
-    cursor.execute("SELECT " + column + " FROM " + table + ";" )
+    if(len(columns_to_search) > 0):
 
-    for i in cursor.fetchall(): #working on display here for search, printing for now
+        if not(columns_to_search[0].get() == "*"):
 
-        print(i[0])
 
-    # you wouln't have a one function for any query,
-    # because select, edit, insert require different variables
-    # why you make your lofi harder???
-    #if(choice == 1):
-    #if(choice == 2): Edit
+            for i in range(len(columns_to_search)):
 
+                if(i > 0):
+
+                    select_columns += ", "
+
+                select_columns += columns_to_search[i].get()
+        else:
+
+            select_columns = "*"
+        
         
 
-    #if(choice == 3):
+        if(len(conditions) > 0 and conditions[0].get() != ""):
+                
+            select_conditions = " WHERE "
 
-       # cursor.execute("INSERT INTO " + table[0] + " (" + column + ")" + " VALUES " + "(" + type_condition + ")" + ";")
+            for i in range(len(conditions)):
 
-    #if(choice == 4): (Delete)
-      
+                if(i > 0):
 
-    #clear array here
+                    select_conditions += " AND " 
+                select_conditions += condition_columns[i].get() + operators[i].get() + conditions[i].get()           
+
+
+        
+                
+           
+
+            cursor.execute("SELECT " + select_columns + " FROM " + table[0] + select_conditions + ";")
+        else:
+  
+            cursor.execute("SELECT " + select_columns + " FROM " + table[0] + ";")
+
+        #need column name for displaying results    
+        if(len(columns_to_search) > 0):
+            for result in cursor.fetchall():
+                search_results.append(result)
+            print(search_results)
+
+        return search_results     
+                
+                
+
+
+        conn.commit()
+        cursor.close()
+
+def db_edit(table, columns_to_edit, values, condition_columns, operators, conditions):
+    
+    #handle for all *
+    cursor = conn.cursor()
+
+    query = ""
+    if(len(columns_to_edit) > 0 and len(values) > 0):
+        for i in range(len(columns_to_edit)):
+
+            if(i > 0):
+
+                query += ", "
+
+            query += columns_to_edit[i].get() + "=" + values[i].get() 
+
+
+
+
+        query += " WHERE "
+
+        for i in range(len(conditions)):
+
+            if(i > 0):
+
+                query += " AND "
+
+            query += condition_columns[i].get() + operators[i].get() + conditions[i].get()
+
+ 
+
+        query += ";"        
+        cursor.execute("UPDATE " + table[0] + " SET " + query)        
+        conn.commit()
+        cursor.close()         
+
+
+
+def db_add(columns_to_add, values, table):
+
+    cursor = conn.cursor()
+
+    if(len(columns_to_add) > 0):
+  
+        cols = ""
+        vals = ""
+
+        for i in range(len(columns_to_add)):
+
+            if(i > 0):
+
+                cols += ", "
+                vals += ", "
+          
+            cols += columns_to_add[i].get()
+            vals += values[i].get()
+
+
+
+        if(vals != ""):
+            cursor.execute("INSERT INTO " + table[0] + "(" + cols + ") VALUES ( " + vals + ");")
+
+            conn.commit()
+            cursor.close()   
+    
+
+def db_delete(columns_to_delete, conditions, operators, table):
+    #handle for all *
+    cursor = conn.cursor()
+
+
+    for i in range(len(conditions)):
+        
+             
+
+        cursor.execute("DELETE FROM " + table[0] + " WHERE " + columns_to_delete[i].get() + operators[i].get() + conditions[i].get() + ";")
+    
     conn.commit()
-    cursor.close()    
+    cursor.close()      
+
+
+
+
+
+ 
+
 
 

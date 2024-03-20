@@ -27,6 +27,7 @@ class ScreenManager:
         self.drop_col_con_val = [] #to hold StringVars for each OptionMenu
         self.ent_oper_val = [] #to hold the conditions/values for each OptionMenu
         self.ent_val = [] #to hold the conditions/values for each OptionMenu
+        self.ent_set = [] #setting values for edit
         #self.command_count = 0 
         #self.condition_count = 0
         self.current = None
@@ -44,6 +45,7 @@ class ScreenManager:
     # it should be used by go_back()
     def on_button_click_and_close(self, button_value):
         self.choice = button_value
+
         #call execute
 
         # WHYYYYY
@@ -144,6 +146,7 @@ class ScreenManager:
         button.config(bg=self.back_bg)
         button.place(relx=0.02, rely=0.95)  # Place the button at 2% from the left and 95% from the top of the window
         
+
         self.root.update_idletasks()  # Update the GUI to reflect changes
 
 
@@ -206,32 +209,51 @@ class ScreenManager:
         drop_choise.set(self.options[0])
 
         dropdown = tk.OptionMenu(frame, drop_choise, *self.options)  
-        dropdown.grid()
+        dropdown.grid(row=1,column=1)
+
+        if(str(self.choice).endswith('2')):
+            set_sign = tk.Label(frame, text='=')
+            set_sign.grid(row=1, column=2, padx=10)
+            input_val = tk.Entry(frame, width=15)
+            input_val.grid(row=1,column=3, padx=10) 
+
+            self.ent_set.append(input_val)
+
+
 
         #dropdown.grid(row=1, column=2)
         #self.command.insert(self.count,default)
         self.drop_col_val.append(drop_choise)
 
     def create_entry_condition(self, frame):
-        oper_choise = tk.StringVar()
-        oper_choise.set(self.operators[0])
+        
 
+        if not(str(self.choice).endswith('3')):
+            oper_choise = tk.StringVar()
+            oper_choise.set(self.operators[0])
+
+            sign_menu = tk.OptionMenu(frame, oper_choise, *self.operators)
+            sign_menu.grid(row=self.row, column=2, padx=10)
+
+
+            self.ent_oper_val.append(oper_choise)
+
+
+ 
         drop_choise = tk.StringVar()
         drop_choise.set(self.options[0])
 
 
         dropdown_col = tk.OptionMenu(frame, drop_choise, *self.options)  
-        dropdown_col.grid(row=self.row, column=1, padx=10)
-
-        sign_menu = tk.OptionMenu(frame, oper_choise, *self.operators)
-        sign_menu.grid(row=self.row, column=2, padx=10)
+        dropdown_col.grid(row=self.row, column=1, padx=10)        
 
         input_val = tk.Entry(frame, width=15)
         input_val.grid(row=self.row, column=3, padx=10) 
+   
+        
+        self.ent_val.append(input_val)
 
         self.drop_col_con_val.append(drop_choise)
-        self.ent_oper_val.append(oper_choise)
-        self.ent_val.append(input_val)
 
         self.row += self.row
 
@@ -251,71 +273,15 @@ class ScreenManager:
         print(values)
 
 
-#    def conditions(self):    
-#
-#
-#        frame = tk.Frame(self.root)
-#        frame.configure(bg=self.bg_color)
-#
-#        add_col = tk.Button(frame, text="+")
-#        #add_col.grid(row=self.row, column=2, pady=20)
-#
-#        if(self.execute == 1): #working on adding conditions here
-#            operators = ['=', '>', '<', '>=', '<=', "!="]
-#            op = tk.StringVar()
-#            op.set(operators[0])
-#
-#            sign_menu = tk.OptionMenu(frame, op, *operators)
-#            sign_menu.grid(row=1, column=2, padx=10)
-#
-#            condition_box = tk.Entry(frame, width=15)
-#            condition_box.grid(row=1, column=3, padx=10) 
-#
-#            #Will fix placement
-#            input_box = tk.Entry(frame, width=15)
-#            input_box.grid(row=1, column=1, padx=10)    
-#
-#        # ?????????????????
-#        else:   
-#
-#            #Have to fix placement of this box
-#            input_box = tk.Entry(frame, width=5)
-#            input_box.grid(row=1, column=3, padx=10)
-#            self.condition.append(input_box.get())
-#
-#
-#
-#        frame.pack(padx=(self.screen_width//8,0), pady=(0,self.screen_height//4))
 
-      
+    def clear_arrays(self):
+        self.drop_col_val.clear()
+        self.drop_col_con_val.clear()
+        self.ent_oper_val.clear()
+        self.ent_val.clear()
 
-    #soon to be add_dropdown based on placement of + button
-#    def add_column(self, frame,, button):
-#
-#        if(self.row < 7): #will change this to calculate with screen dimensions in mind
-#
-#            #will fix inconsistencies in padding
-#            
-#            #if(self.pos_col < 0.70): #can change to available
-#            self.row += 2
-#
-#            button.grid(row=self.row, column=2)
-#
-#            self.row -= 1
-#
-#            #default = tk.StringVar()
-#            #default.set(options[0])
-#
-#            #dropdown = tk.OptionMenu(frame, default, *options)  
-#            #dropdown.grid(row=self.row, column=2, pady=20)
-#
-#            self.command.append(default)
 
- 
-
-    
-
-    #add condition function here def add_condition(self): 
+    #def display_results(self, frame)    
 
 
 
