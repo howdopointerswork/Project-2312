@@ -237,7 +237,7 @@ class ScreenManager:
             sign_menu = tk.OptionMenu(frame, oper_choise, *self.operators)
             sign_menu.grid(row=self.row, column=2, padx=10)
 
-
+            
             self.ent_oper_val.append(oper_choise)
 
 
@@ -278,20 +278,29 @@ class ScreenManager:
 
 
 
-    def display_results(self, columns_to_display, fields):
+    def display_results(self, frame, columns_to_display, fields):
 
-        #positioning here
-        i = 1
-        j = 1
-
-        display_frame = tk.Frame(self.root)
+        i = 3
+        j = 0
 
         for column in columns_to_display:
-            show_column = tk.Label(display_frame,text='hi')
-            show_column.grid(row = i, column = j)
-            j+=1
+            
+            show_column = tk.Label(frame, text=column.get())
+            show_column.grid(row=i, column=j, pady=20, padx=10)
 
-           
+            #for row in fields:
+
+                #show_row = tk.Label()
+
+
+            j += 1
+
+
+
+        
+  
+
+
 
 
 

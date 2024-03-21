@@ -99,9 +99,16 @@ def db_edit(table, columns_to_edit, values, condition_columns, operators, condit
     
     #handle for all *
     cursor = conn.cursor()
+    non_empty = True
+
+
+    for val in values:
+        if(val.get() == ""):
+            non_empty = False
+
 
     query = ""
-    if(len(columns_to_edit) > 0 and len(values) > 0):
+    if(len(columns_to_edit) > 0 and non_empty == True):
         for i in range(len(columns_to_edit)):
 
             if(i > 0):
@@ -136,23 +143,23 @@ def db_add(columns_to_add, values, table):
 
     cursor = conn.cursor()
 
+
     if(len(columns_to_add) > 0):
   
         cols = ""
         vals = ""
 
-        for i in range(len(columns_to_add)):
 
+
+        for i in range(len(columns_to_add)):
             if(i > 0):
 
                 cols += ", "
-                if(len(values[i].get()) > 0):
-                    vals += ", "
+                vals += ", "
 
           
             cols += columns_to_add[i].get()
-            if(len(values[i].get()) > 0):
-                vals += values[i].get()
+            vals += values[i].get()
 
 
 
@@ -166,22 +173,28 @@ def db_add(columns_to_add, values, table):
 def db_delete(columns_to_delete, conditions, operators, table):
     #handle for all *
     cursor = conn.cursor()
+    non_empty = True
 
+    for condition in conditions:
+        if(condition.get() == ""):
+            non_empty = False
 
-    for i in range(len(conditions)):
+    if(non_empty):
+        for i in range(len(conditions)):
         
              
 
-        cursor.execute("DELETE FROM " + table[0] + " WHERE " + columns_to_delete[i].get() + operators[i].get() + conditions[i].get() + ";")
+            cursor.execute("DELETE FROM " + table[0] + " WHERE " + columns_to_delete[i].get() + operators[i].get() + conditions[i].get() + ";")
     
-    conn.commit()
-    cursor.close()      
+        conn.commit()
+        cursor.close()      
 
 
 
 
 
  
+
 
 
 

@@ -19,6 +19,8 @@ def main():
     tables = db.db_get_tables()
 
     items_to_display = []
+
+    temp = []
     
     # main loop
     # I Expect to screen_manager.choice to be updated by go_back() 
@@ -91,11 +93,14 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
         if (screen_manager.choice == 11):
+            screen_manager.clear_all_data()
             items_to_display = db.db_search(screen_manager.current, screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
-            screen_manager.display_results(screen_manager.drop_col_val, items_to_display)
+            temp = screen_manager.drop_col_val
             screen_manager.clear_all_data()
             title_frame = screen_manager.title_table_name('Results') 
+            screen_manager.display_results(title_frame,temp, items_to_display)
             title_frame.pack(side="top", pady=65)
+            
             screen_manager.go_back(confirm_temp)            
             root.update()
 
@@ -104,7 +109,9 @@ def main():
             print("New Choice that we store for go back:", confirm_temp)
 #<><><><><><><><><><><><><><><> Edit option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 2):
+            screen_manager.clear_all_data()
             db.db_edit(screen_manager.current, screen_manager.drop_col_val, screen_manager.ent_set, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
+            screen_manager.clear_all_data()
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
             root.update()
@@ -149,7 +156,9 @@ def main():
         
 
         if (screen_manager.choice == 3):
+            screen_manager.clear_all_data()
             db.db_add(screen_manager.drop_col_con_val, screen_manager.ent_val, screen_manager.current)
+            screen_manager.clear_all_data()
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
             root.update()
@@ -194,8 +203,9 @@ def main():
 #<><><><><><><><><><><><><><><> Delete option <><><><><><><><><><><><><><><>
  
         if (screen_manager.choice == 4):
+            screen_manager.clear_all_data()
             db.db_delete(screen_manager.drop_col_con_val, screen_manager.ent_val, screen_manager.ent_oper_val, screen_manager.current)
-
+            screen_manager.clear_all_data()
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
             #db.db_delete(screen_manager.drop_col_con_val, screen_manager.ent_val, screen_manager.ent_oper_val, screen_manager.current)
@@ -247,6 +257,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
