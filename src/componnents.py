@@ -214,9 +214,9 @@ class ScreenManager:
 
         if(str(self.choice).endswith('2')):
             set_sign = tk.Label(frame, text='=')
-            set_sign.grid(row=1, column=2, padx=10)
+            set_sign.grid(row=self.row, column=2, padx=10)
             input_val = tk.Entry(frame, width=15)
-            input_val.grid(row=1,column=3, padx=10) 
+            input_val.grid(row=self.row,column=3, padx=10) 
 
             self.ent_set.append(input_val)
 
