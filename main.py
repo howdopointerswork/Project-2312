@@ -37,7 +37,6 @@ def main():
     
 #<><><><><><><><><><><><><><><> Search option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 1):
-            screen_manager.clear_arrays()
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
             root.update()
@@ -48,7 +47,6 @@ def main():
         # and than be terminated by "canfirm" method that is goint to be prosidual
         confirm_temp =0
         if (etc.ends_with(screen_manager.choice, 1)):
-            screen_manager.clear_arrays()
             title_frame = screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
             title_frame.pack(side="top", pady=65)
             mother_frame = tk.Frame(root)
@@ -95,7 +93,6 @@ def main():
         if (screen_manager.choice == 11):
             items_to_display = db.db_search(screen_manager.current, screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
             screen_manager.display_results(screen_manager.drop_col_val, items_to_display)
-            screen_manager.clear_arrays()
             screen_manager.clear_all_data()
             title_frame = screen_manager.title_table_name('Results') 
             title_frame.pack(side="top", pady=65)
@@ -108,7 +105,6 @@ def main():
 #<><><><><><><><><><><><><><><> Edit option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 2):
             db.db_edit(screen_manager.current, screen_manager.drop_col_val, screen_manager.ent_set, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
-            screen_manager.clear_arrays()
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
             root.update()
@@ -154,7 +150,6 @@ def main():
 
         if (screen_manager.choice == 3):
             db.db_add(screen_manager.drop_col_con_val, screen_manager.ent_val, screen_manager.current)
-            screen_manager.clear_arrays()
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
             root.update()
@@ -200,7 +195,6 @@ def main():
  
         if (screen_manager.choice == 4):
             db.db_delete(screen_manager.drop_col_con_val, screen_manager.ent_val, screen_manager.ent_oper_val, screen_manager.current)
-            screen_manager.clear_arrays()
 
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)

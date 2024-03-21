@@ -276,11 +276,6 @@ class ScreenManager:
 
 
 
-    def clear_arrays(self):
-        self.drop_col_val.clear()
-        self.drop_col_con_val.clear()
-        self.ent_oper_val.clear()
-        self.ent_val.clear()
 
 
     def display_results(self, columns_to_display, fields):
