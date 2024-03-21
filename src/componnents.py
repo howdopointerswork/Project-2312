@@ -172,6 +172,7 @@ class ScreenManager:
         self.drop_col_con_val = [] #to hold StringVars for each OptionMenu
         self.ent_oper_val = [] #to hold the conditions/values for each OptionMenu
         self.ent_val = [] #to hold the conditions/values for each OptionMenu
+        self.ent_set = []
 
 
     def title_table_name(self, title):
@@ -209,7 +210,7 @@ class ScreenManager:
         drop_choise.set(self.options[0])
 
         dropdown = tk.OptionMenu(frame, drop_choise, *self.options)  
-        dropdown.grid(row=1,column=1)
+        dropdown.grid(row=self.row,column=1)
 
         if(str(self.choice).endswith('2')):
             set_sign = tk.Label(frame, text='=')
@@ -224,6 +225,7 @@ class ScreenManager:
         #dropdown.grid(row=1, column=2)
         #self.command.insert(self.count,default)
         self.drop_col_val.append(drop_choise)
+        self.row += self.row
 
     def create_entry_condition(self, frame):
         
@@ -281,7 +283,20 @@ class ScreenManager:
         self.ent_val.clear()
 
 
-    #def display_results(self, frame)    
+    def display_results(self, columns_to_display, fields):
+
+        #positioning here
+        i = 1
+        j = 1
+
+        display_frame = tk.Frame(self.root)
+
+        for column in columns_to_display:
+            show_column = tk.Label(display_frame,text='hi')
+            show_column.grid(row = i, column = j)
+            j+=1
+
+           
 
 
 

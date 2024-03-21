@@ -18,7 +18,7 @@ def main():
 
     tables = db.db_get_tables()
 
-    display_results = []
+    items_to_display = []
     
     # main loop
     # I Expect to screen_manager.choice to be updated by go_back() 
@@ -93,7 +93,8 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
         if (screen_manager.choice == 11):
-            display_results = db.db_search(screen_manager.current, screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
+            items_to_display = db.db_search(screen_manager.current, screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
+            screen_manager.display_results(screen_manager.drop_col_val, items_to_display)
             screen_manager.clear_arrays()
             screen_manager.clear_all_data()
             title_frame = screen_manager.title_table_name('Results') 
@@ -203,8 +204,8 @@ def main():
 
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
-            db.db_delete(screen_manager.drop_col_con_val, screen_manager.ent_val, screen_manager.ent_oper_val, screen_manager.current)
-            screen_manager.clear_arrays()
+            #db.db_delete(screen_manager.drop_col_con_val, screen_manager.ent_val, screen_manager.ent_oper_val, screen_manager.current)
+            #screen_manager.clear_arrays()
             root.update()
 
 
@@ -223,6 +224,7 @@ def main():
             options_temp = [item[0] for item in db.db_get_columns(tables[int(screen_manager.choice)-1])]
             #options_temp.append('*')
             screen_manager.options = options_temp
+
 
 
             screen_manager.create_right_frame(mother_frame)

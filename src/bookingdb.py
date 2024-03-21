@@ -146,10 +146,13 @@ def db_add(columns_to_add, values, table):
             if(i > 0):
 
                 cols += ", "
-                vals += ", "
+                if(len(values[i].get()) > 0):
+                    vals += ", "
+
           
             cols += columns_to_add[i].get()
-            vals += values[i].get()
+            if(len(values[i].get()) > 0):
+                vals += values[i].get()
 
 
 
