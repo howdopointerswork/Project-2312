@@ -28,6 +28,7 @@ class ScreenManager:
         self.ent_oper_val = [] #to hold the conditions/values for each OptionMenu
         self.ent_val = [] #to hold the conditions/values for each OptionMenu
         self.ent_set = [] #setting values for edit
+        self.display_vals = []
         #self.command_count = 0 
         #self.condition_count = 0
         self.current = None
@@ -173,6 +174,7 @@ class ScreenManager:
         self.ent_oper_val = [] #to hold the conditions/values for each OptionMenu
         self.ent_val = [] #to hold the conditions/values for each OptionMenu
         self.ent_set = []
+        self.row = 1
 
 
     def title_table_name(self, title):
@@ -226,6 +228,8 @@ class ScreenManager:
         #self.command.insert(self.count,default)
         self.drop_col_val.append(drop_choise)
         self.row += self.row
+
+
 
     def create_entry_condition(self, frame):
         
@@ -281,19 +285,38 @@ class ScreenManager:
     def display_results(self, frame, columns_to_display, fields):
 
         i = 3
-        j = 0
+        j = 0 
+        temp = 0
+
+        print(fields)
 
         for column in columns_to_display:
-            
             show_column = tk.Label(frame, text=column.get())
             show_column.grid(row=i, column=j, pady=20, padx=10)
+            j+=1
 
-            #for row in fields:
-
-                #show_row = tk.Label()
+        
 
 
-            j += 1
+        j = 0
+        i+=len(columns_to_display)
+
+
+        for value in fields:
+            if(j == len(columns_to_display)):
+                j = 0
+                i+=len(columns_to_display)
+
+
+            show_field = tk.Label(frame, text=value)
+            show_field.grid(row=i, column=j)
+                
+
+                
+            j+=1
+
+
+
 
 
 

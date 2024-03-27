@@ -39,10 +39,11 @@ def db_search(table, columns_to_search, condition_columns, operators, conditions
 
     
 
-    
 
 
-    if(len(columns_to_search) > 0):
+
+    if(len(columns_to_search) > 0 and conditions != ""):
+
 
         if not(columns_to_search[0].get() == "*"):
 
@@ -60,7 +61,8 @@ def db_search(table, columns_to_search, condition_columns, operators, conditions
         
         
 
-        if(len(conditions) > 0 and conditions[0].get() != ""):
+        if(conditions[0].get() != ""):
+
                 
             select_conditions = " WHERE "
 
@@ -69,31 +71,36 @@ def db_search(table, columns_to_search, condition_columns, operators, conditions
                 if(i > 0):
 
                     select_conditions += " AND " 
-                select_conditions += condition_columns[i].get() + operators[i].get() + conditions[i].get()           
 
-
-        
-                
-           
-
-            cursor.execute("SELECT " + select_columns + " FROM " + table[0] + select_conditions + ";")
-        else:
+                select_conditions += condition_columns[i].get() + operators[i].get() + conditions[i].get()
   
-            cursor.execute("SELECT " + select_columns + " FROM " + table[0] + ";")
-
-        #need column name for displaying results    
-        if(len(columns_to_search) > 0):
+            cursor.execute("SELECT " + select_columns + " FROM " + table[0] + select_conditions + ";")
             for result in cursor.fetchall():
-                search_results.append(result)
-            print(search_results)
-
-        return search_results     
-                
-                
+                for i in range(len(result)):
+                    search_results.append(result[i])
 
 
-        conn.commit()
-        cursor.close()
+                #print(select_conditions)
+
+            
+        else:
+
+            cursor.execute("SELECT " + select_columns + " FROM " + table[0] + ";")
+            for result in cursor.fetchall():
+                for i in range(len(result)):
+                    search_results.append(result[i])
+
+                #print(select_conditions)
+
+    #need column name for displaying results    
+    
+
+    conn.commit()
+    cursor.close()  
+
+    return search_results  
+    
+
 
 def db_edit(table, columns_to_edit, values, condition_columns, operators, conditions):
     

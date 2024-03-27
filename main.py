@@ -39,6 +39,7 @@ def main():
     
 #<><><><><><><><><><><><><><><> Search option <><><><><><><><><><><><><><><>
         if (screen_manager.choice == 1):
+            screen_manager.clear_all_data()
             screen_manager.grid_table_chooser(tables)
             screen_manager.go_back(0)
             root.update()
@@ -49,6 +50,7 @@ def main():
         # and than be terminated by "canfirm" method that is goint to be prosidual
         confirm_temp =0
         if (etc.ends_with(screen_manager.choice, 1)):
+           # db.db_search(screen_manager.current, screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
             title_frame = screen_manager.title_table_name(tables[int(screen_manager.choice)-1])
             title_frame.pack(side="top", pady=65)
             mother_frame = tk.Frame(root)
@@ -93,12 +95,12 @@ def main():
             root.mainloop()
             print("Choice:", screen_manager.choice)
         if (screen_manager.choice == 11):
-            screen_manager.clear_all_data()
+            #db.db_search(screen_manager.current, screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val, screen_manager.display_vals)
             items_to_display = db.db_search(screen_manager.current, screen_manager.drop_col_val, screen_manager.drop_col_con_val, screen_manager.ent_oper_val, screen_manager.ent_val)
             temp = screen_manager.drop_col_val
             screen_manager.clear_all_data()
             title_frame = screen_manager.title_table_name('Results') 
-            screen_manager.display_results(title_frame,temp, items_to_display)
+            screen_manager.display_results(title_frame, temp, items_to_display)
             title_frame.pack(side="top", pady=65)
             
             screen_manager.go_back(confirm_temp)            
@@ -257,7 +259,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 
 
