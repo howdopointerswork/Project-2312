@@ -1,4 +1,4 @@
--- SQL TABLES
+--SQL TABLES
 
 CREATE TABLE Customer (
   cust_id INTEGER PRIMARY KEY,
